@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC004</title>
+    <style>
+        p{
+            text-align: center;
+        }
+        div{
+            margin: 0 auto;
+            padding: 20px;
+            width: 300px;
+            border: 1px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <p>Registration Form!</p>
+    <div>
+        <form action="/submit" method="post">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name"><br><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email"><br><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password"><br>
+            <label for="gender">Gender:</label><br>
+            <input type="radio" id="male" name="gender" value="male"> Male<br>
+            <input type="radio" id="female" name="gender" value="female"> Female<br>
+            <label for="skills">Skills:</label><br>
+            <input type="checkbox" id="skills" name="react" value="react">React<br>
+            <input type="checkbox" id="skills" name="nodejs" value="nodejs">Node.js<br>
+            <input type="checkbox" id="skills" name="python" value="python">Python<br><br>
+            <label for="country">Country:</label>
+            <select id="country" name="country">
+                <option value="india">India</option>
+                <option value="japan">Japan</option>
+                <option value="russia">Russia</option>
+            </select><br><br>
+            <textarea name="bio" id="bio" placeholder="Enter your bio here..."></textarea><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
