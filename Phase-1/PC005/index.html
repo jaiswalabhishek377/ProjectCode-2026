@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC005</title>
+    <style>
+        /* 1. Resetting default browser spacing so it looks clean */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: grid; 
+            /* 2. CSS GRID: This is the magic that creates the layout */
+            grid-template-areas: 
+                "header header"
+                "main sidebar"
+                "footer footer";
+            grid-template-columns: 3fr 1fr; /* Main takes 1 parts, Sidebar takes 1 part */
+            gap: 20px;
+        }
+
+        /* 3. Styling the Semantic Tags */
+        header {
+            grid-area: header;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            nav{
+                display: flex;
+                justify-content: flex-end;
+                gap: 20px;
+            }
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        main {
+            grid-area: main;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive columns */
+            gap: 20px;
+            padding: 20px;
+            background-color: #f4f4f4; /* Light grey to distinguish main area */
+        }
+
+        article {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 5px solid #007BFF; /* A blue accent line */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        aside {
+            grid-area: sidebar;
+            padding: 20px;
+            background-color: #e2e2e2;
+            border-radius: 8px;
+        }
+
+        footer {
+            grid-area: footer;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to PC005</h1>
+        <nav>
+            <a href="">Home</a>
+            <a href="">About</a>
+            <a href="">Contact</a>
+            <a href="">Explore</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Section 1</h2>
+            <p>This is the first section of PC005.</p>
+            <article>
+                <h3>Article 1</h3>
+                <p>This is the first article in Section 1.</p>
+            </article>
+        </section>
+        <section>
+            <h2>Section 2</h2>
+            <p>This is the second section of PC005.</p>
+                <article>
+                    <h3>Article 2</h3>
+                    <p>This is the first article in Section 2.</p>
+                </article>
+        </section>
+        <section>
+            <h2>Section 3</h2>
+            <p>This is the third section of PC005.</p>
+                <article>
+                    <h3>Article 3</h3>
+                    <p>This is the first article in Section 3.</p>
+                </article>
+        </section>
+        <section>
+            <h2>Section 4</h2>
+            <p>This is the fourth section of PC005.</p>
+                <article>
+                    <h3>Article 4</h3>
+                    <p>This is the first article in Section 4.</p>
+                </article>
+        </section>
+    </main>
+    <aside>
+        <h2>Related Links</h2>
+        <ul>
+            <li><a href="">Link 1</a></li>
+            <li><a href="">Link 2</a></li>
+            <li><a href="">Link 3</a></li>
+        </ul>
+    </aside>
+    <footer>
+        <p>&copy; 2024 PC005. All rights reserved.</p>
+    </footer>
+</body>
+</html>
