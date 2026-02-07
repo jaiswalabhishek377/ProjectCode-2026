@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC006</title>
+    <style>
+        *{  
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* Basic styling to make it readable */
+        ul {
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+            list-style-type: square;
+        }
+
+        /* 1. Color ALL odd items RED */
+        li:nth-child(odd) {
+            color: red;
+        }
+
+        /* 2. Color the 3rd item BLUE */
+        /* MUST come after the 'odd' rule to override it! */
+        li:nth-child(3) {
+            color: blue;
+        }
+
+        /* 3. Color the last item GREEN */
+        li:last-child {
+            color: green;
+        }
+        p{
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <p>Welcome to PC006!</p>
+    <h1>The Top 10 List</h1>
+    <ul>
+        <li>Item 1 (Odd - Red)</li>
+        <li>Item 2</li>
+        <li>Item 3 (Odd but 3rd - Blue)</li>
+        <li>Item 4</li>
+        <li>Item 5 (Odd - Red)</li>
+        <li>Item 6</li>
+        <li>Item 7 (Odd - Red)</li>
+        <li>Item 8</li>
+        <li>Item 9 (Odd - Red)</li>
+        <li>Item 10 (Last - Green)</li>
+    </ul>
+</body>
+</html>
