@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC 8: Flexbox Advanced</title>
+    <style>
+        * { box-sizing: border-box; }
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        /* --- CHALLENGE 1: THE NAVBAR --- */
+        nav {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            
+            /* TODO: 1. Turn on Flexbox */
+            display:flex;
+            
+            /* TODO: 2. Make items vertically centered (so text isn't top-aligned) */
+            align-items: center;
+            
+            /* TODO: 3. Spread items out so there is space between them */
+            /* Hint: space-between */
+            justify-content: space-between;
+            
+        }
+
+        .nav-links {
+            /* We want this to be 2nd visual item */
+            /* Default order is 0 */
+            order: 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #d32f2f;
+            
+            /* TODO: 4. Move the Logo to the visual START */
+            /* Hint: Use a negative number for 'order' */
+            order: -1;
+        }
+
+        .user-profile {
+            /* We want this to be 3rd visual item */
+            font-weight: bold;
+            order:1;
+        }
+
+        /* --- CHALLENGE 2: THE WRAPPING TAGS --- */
+        .tags-container {
+            margin-top: 50px;
+            border: 2px dashed #999;
+            padding: 10px;
+            width: 300px; /* Forces a small width to test wrapping */
+            
+            /* TODO: 5. Turn on Flexbox */
+            display: flex;
+            
+            /* TODO: 6. Allow items to wrap to the next line */
+            /* If you don't do this, they will overflow out of the box */
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            margin: 5px;
+            border-radius: 15px;
+            white-space: nowrap; /* Keeps tag text on one line */
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-links">
+            <a href="#">Home</a> | <a href="#">About</a>
+        </div>
+
+        <div class="logo">MY WEBSITE</div>
+
+        <div class="user-profile">
+            User: Alex
+        </div>
+    </nav>
+
+    <h3>Popular Topics (Try shrinking width!)</h3>
+    <div class="tags-container">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">React</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">Python</span>
+        <span class="tag">Design</span>
+        <span class="tag">Flexbox</span>
+        <span class="tag">Grid</span>
+        <span class="tag">Accessibility</span>
+    </div>
+
+</body>
+</html>
