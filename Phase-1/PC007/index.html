@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC 7: Box Model & Positioning</title>
+    <style>
+        /* 1. THE UNIVERSAL RESET (Crucial for Box Model) */
+        * {
+            box-sizing: border-box; 
+        }
+
+        body {
+            font-family: sans-serif;
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* THE MAIN CARD */
+        .card {
+            background-color: white;
+            width: 300px;
+            height: 200px; /* Small height to force scroll */
+            overflow-y: scroll; /* Scrollable content */
+            border-radius: 12px;
+            
+            /* TODO: Add Padding here so text doesn't touch edges */
+            padding: 20px; 
+            
+            /* TODO: Add a thick 5px border */
+            border: 5px solid #007bff;
+        }
+
+        /* THE STICKY HEADER inside the card */
+        .sticky-label {
+            background: #ffc107;
+            text-align: center;
+            padding: 5px;
+            font-weight: bold;
+            
+            /* TODO: Make this STICK to the top when scrolling */
+            position: sticky;
+            top: 0;
+            z-index: 10; /* Ensures it stays on top of text */
+        }
+
+        /* THE AVATAR WRAPPER */
+        .avatar-container {
+            width: 80px;
+            height: 80px;
+            margin: 20px auto; /* Centers it horizontally */
+            background-color: #ddd;
+            border-radius: 50%;
+            
+            /* TODO: Set this to 'relative' so the dot knows where to go */
+            position: relative;
+        }
+
+        /* THE ONLINE STATUS DOT */
+        .status-dot {
+            width: 20px;
+            height: 20px;
+            background-color: #28a745; /* Green */
+            border: 2px solid white;
+            border-radius: 50%;
+            
+            /* TODO: Position this 'absolute'ly */
+            position: absolute;
+            
+            /* TODO: Move it to the Top Right corner of the avatar */   
+            top: 0;
+            right: 0; 
+        }
+
+        .content {
+            padding-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="sticky-label">PRO MEMBER</div>
+        
+        <div class="avatar-container">
+            <div class="status-dot"></div>
+        </div>
+
+        <div class="content">
+            <h3>Alex Developer</h3>
+            <p>Scroll down to see the sticky effect!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+            <p>More content to force scrolling...</p>
+            <p>Even more content...</p>
+        </div>
+    </div>
+
+</body>
+</html>
