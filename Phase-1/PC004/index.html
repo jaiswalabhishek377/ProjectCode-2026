@@ -6,44 +6,106 @@
     <title>PC004</title>
     <style>
         p{
+            margin-top: 0;
             text-align: center;
+            margin-bottom: 20px;
         }
-        div{
+        .container{
             margin: 0 auto;
+            margin-top: 70px;
             padding: 20px;
-            width: 300px;
+            width: 400px;
+            height: 550px;
             border: 1px solid black;
-            display: flex;
+        }
+        .gender-options{
+            display: inline-flex;
+            margin-top: 10px;
+            border: none;
+        }
+        .form-group{
             align-items: center;
             justify-content: center;
+            display: flex-start;
+            margin-bottom: 20px;
+            margin-left: 20px;
+        }
+        input{
+            width: 70%;
+            height: 20px;
+        }
+        
+        textarea{
+            width: 80%;
+            height: 100px;
+        }
+        .button-group{
+            margin-top: 20px;
+            display:flex;
+            input{
+                margin-left: 20px;
+                height: 35px;
+                padding: 5px;
+                background-color: lightblue;
+                border: none;
+                border-radius: 5px;
+            }
+        }
+        .skill-group{
+            margin-left: 20px;
+            display: flex;
         }
     </style>
 </head>
 <body>
-    <p>Registration Form!</p>
-    <div>
+    <div class="container">
+        <p><i>Registration Form!</i></p>
         <form action="/submit" method="post">
-            <label for="name">Name:</label><br>
-            <input type="text" id="name" name="name"><br><br>
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email"><br><br>
-            <label for="password">Password:</label><br>
-            <input type="password" id="password" name="password"><br>
-            <label for="gender">Gender:</label><br>
-            <input type="radio" id="male" name="gender" value="male"> Male<br>
-            <input type="radio" id="female" name="gender" value="female"> Female<br>
-            <label for="skills">Skills:</label><br>
-            <input type="checkbox" id="skills" name="react" value="react">React<br>
-            <input type="checkbox" id="skills" name="nodejs" value="nodejs">Node.js<br>
-            <input type="checkbox" id="skills" name="python" value="python">Python<br><br>
-            <label for="country">Country:</label>
+            <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            </div>
+            <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+            </div>
+            <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+            </div>
+            <div class="form-group">
+                <label for="date">Date of Birth:</label>
+                <input type="date" id="date" name="date">
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <div class="gender-options">
+                    <input type="radio" id="male" name="gender" value="male"> Male
+                    <input type="radio" id="female" name="gender" value="female"> Female
+                </div>
+            </div>
+            <div class="skill-group">
+                <label for="skills">Skills:</label>
+                <input type="checkbox" id="skills" name="react" value="react">React
+                <input type="checkbox" id="skills" name="nodejs" value="nodejs">Node.js
+                <input type="checkbox" id="skills" name="python" value="python">Python
+            </div>
+            <div class="form-group">
+                <label for="country">Country:</label>
             <select id="country" name="country">
                 <option value="india">India</option>
                 <option value="japan">Japan</option>
                 <option value="russia">Russia</option>
-            </select><br><br>
-            <textarea name="bio" id="bio" placeholder="Enter your bio here..."></textarea><br><br>
-            <input type="submit" value="Submit">
+            </select>
+            </div>
+            <div class="form-group">
+                <label for="bio">Bio:</label>
+                <textarea name="bio" id="bio" placeholder="Enter your bio here..."></textarea>
+            </div>
+            <div class="button-group">
+                <input type="submit" value="Submit">
+                <input type="reset" value="Reset">
+            </div>
         </form>
     </div>
 </body>
