@@ -1,0 +1,207 @@
+<!-- Desktop (> 900px): Background is Green, Text is huge, Layout is Row.
+Tablet (600px - 900px): Background is Yellow, Text is medium, Layout is Row.
+Mobile (< 600px): Background is Red, Text is small, Layout is Column (stacked). -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media and Container Queries</title>
+    <style>
+        * { box-sizing: border-box; }
+        
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #333;
+        }
+
+        /* --- 1. DEFAULT STYLES (DESKTOP / BIG SCREEN) --- */
+        .shapeshifter {
+            background-color: #2ed573; /* Green */
+            color: white;
+            padding: 40px;
+            width: 80%;
+            border-radius: 20px;
+            
+            /* Layout: Side-by-side */
+            display: flex; 
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .icon { font-size: 80px; }
+        .text { font-size: 40px; }
+        
+        /* This text is only for mobile users */
+        .mobile-warning { display: none; }
+
+
+        /* --- 2. TABLET BREAKPOINT (Max Width: 900px) --- */
+        /* IF screen is smaller than 900px, override these styles */
+        @media (max-width: 900px) {
+            
+            .shapeshifter {
+                background-color: #ffa502; /* Yellow/Orange */
+                /* TODO: Reduce padding to 20px */
+                padding: 20px;
+            }
+
+            .text {
+                /* TODO: Drop font size to 25px */
+                font-size: 25px;
+            }
+            
+            .icon {
+                font-size: 50px;
+            }
+        }
+
+
+        /* --- 3. MOBILE BREAKPOINT (Max Width: 600px) --- */
+        /* IF screen is smaller than 600px, override everything */
+        @media (max-width: 600px) {
+            
+            .shapeshifter {
+                background-color: #ff4757; /* Red */
+                
+                /* TODO: Change Flex Direction to Column (Stack vertical) */
+                flex-direction: column;
+                
+                /* TODO: Center the text */
+                text-align: center;
+            }
+
+            .text {
+                font-size: 20px;
+            }
+
+            /* TODO: Show the hidden warning text */
+            .mobile-warning {
+                display: block;
+                font-weight: bold;
+                margin-top: 10px;
+            }
+            
+            /* TODO: Hide the big icon (display: none) to save space */
+            .icon {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="shapeshifter">
+        <div class="icon">🖥️ Desktop</div>
+        <div class="text">I am a Shapeshifter!</div>
+        <div class="mobile-warning">⚠️ I am now in Mobile Mode</div>
+    </div>
+</body>
+</html>
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC 10: Container Queries</title>
+    <style>
+        * { box-sizing: border-box; }
+        
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+            background-color: #eee;
+        }
+
+        /* --- THE LAYOUT (Sidebar + Main) --- */
+        .sidebar {
+            width: 30%; /* Narrow column */
+            background: #ddd;
+            padding: 10px;
+            
+            /* STEP 1: Define this as a Container */
+            container-type: inline-size;
+            container-name: card-wrapper;
+        }
+
+        .main-content {
+            width: 70%; /* Wide column */
+            background: white;
+            padding: 10px;
+
+            /* STEP 1: Define this as a Container too */
+            container-type: inline-size;
+            container-name: card-wrapper;
+        }
+
+        /* --- THE COMPONENT (The Card) --- */
+        /* DEFAULT STYLE (Mobile / Narrow View) */
+        .smart-card {
+            background: #333;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column; /* Stacked by default */
+            gap: 10px;
+            text-align: center;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100px;
+            background-color: #ff4757;
+            border-radius: 4px;
+        }
+
+        /* --- STEP 2: THE CONTAINER QUERY --- */
+        /* "If the CONTAINER I am inside is wider than 400px..." */
+        @container card-wrapper (min-width: 400px) {
+            
+            .smart-card {
+                background: #2ed573; /* Change color to Green */
+                flex-direction: row; /* Switch to Side-by-Side */
+                text-align: left;
+                align-items: center;
+            }
+
+            .card-img {
+                width: 100px; /* Fix image size */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h3>Narrow Sidebar</h3>
+        <div class="smart-card">
+            <div class="card-img"></div>
+            <div class="info">
+                <h4>Product A</h4>
+                <p>$19.99</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <h3>Wide Main Area</h3>
+        <div class="smart-card">
+            <div class="card-img"></div>
+            <div class="info">
+                <h4>Product A</h4>
+                <p>$19.99</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html> -->
