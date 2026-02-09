@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC 11: Advanced Units</title>
+    <style>
+        /* 1. RESET: Use Border-Box */
+        * { box-sizing: border-box; }
+
+        /* 2. ROOT SETTING */
+        /* We set a base percentage, NOT pixels. 62.5% makes 1rem = 10px (Easier math!) */
+        html { font-size: 62.5%; } 
+
+        body {
+            font-family: sans-serif;
+            background-color: #2c3e50;
+            margin: 0;
+            
+            /* TODO: Make the body take up the FULL screen height using Viewport Height */
+            min-height: 100vh;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fluid-card {
+            background-color: #ecf0f1;
+            
+            /* TODO: WIDTH CALCULATION */
+            /* "I want it to be half the screen width, plus an extra 50px fixed" */
+            width: calc(50vw + 50px);
+            
+            /* TODO: PADDING using REM */
+            /* 1rem = 10px (because of our html rule). So 4rem = 40px */
+            padding: 4rem;
+            
+            border-radius: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            color: #e74c3c;
+            
+            /* TODO: FLUID FONT SIZE */
+            /* This is magic. 5vw means "5% of the screen width". */
+            /* If screen is 1000px wide, font is 50px. If screen is 500px, font is 25px. */
+            font-size: 5vw; 
+            
+            margin: 0 0 2rem 0;
+        }
+
+        p {
+            color: #34495e;
+            
+            /* Standard text size (approx 16px) */
+            font-size: 1.6rem; 
+            line-height: 1.5;
+        }
+
+        .elastic-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 2rem;
+            
+            /* TODO: EM PADDING */
+            /* "em" looks at the font-size OF THIS BUTTON */
+            font-size: 2rem; 
+            
+            /* 1em padding means "equal to the font size" (20px) */
+            padding: 1em 2em; 
+        }
+
+        /* Hover effect to show scaling */
+        .elastic-btn:hover {
+            /* If we increase font-size on hover, does the padding grow too? YES! */
+            font-size: 2.5rem; 
+        }
+        #hi { font-size: 16px; }
+        @media (min-width: 600px) { #hi { font-size: 30px; } }
+        @media (min-width: 1200px) { #hi { font-size: 50px; } }
+        /* #hi {
+        font-size: clamp(16px, 5vw, 50px);
+        } */
+
+    </style>
+</head>
+<body>
+
+    <div class="fluid-card">
+        <h1>I Shrink & Grow!</h1>
+        <p>Resize your browser window horizontally.</p>
+        <p>Notice how the red Headline gets smaller smoothly, but this paragraph text stays readable?</p>
+        
+        <button class="elastic-btn">Hover Me!</button>
+    </div>
+    <h1 id="hi">
+        THE LEGEND!
+    </h1>
+
+</body>
+</html>
