@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC 12: Magazine Typography</title>
+    <style>
+        /* 1. IMPORT GOOGLE FONTS */
+        /* This pulls the font files from Google's servers */
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+        * { box-sizing: border-box; }
+
+        body {
+            /* 2. SET THE BODY FONT (The clean one) */
+            font-family: 'Lato', sans-serif;
+            background-color: #fcfcfc; /* Off-white paper color */
+            color: #333; /* Never use pure black #000, it hurts the eyes */
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .article-container {
+            max-width: 700px; /* Readability rule: Lines shouldn't be too long */
+        }
+
+        /* 3. THE "FANCY" HEADER */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem; /* Huge */
+            margin-bottom: 0.5rem;
+            
+            /* Tighten big text so it looks solid */
+            letter-spacing: -1px; 
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 2rem;
+        }
+
+        /* 4. THE BODY TEXT */
+        p {
+            /* 1.6 is the Magic Number for comfortable reading */
+            line-height: 1.6; 
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* 5. THE "DROP CAP" (First letter styling) */
+        /* This selects the FIRST letter of the FIRST paragraph */
+        p:first-of-type::first-letter {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            float: left; /* Text wraps around it */
+            line-height: 0.8;
+            margin-right: 10px;
+            color: #d35400; /* Accent color */
+        }
+
+        /* 6. A "PULL QUOTE" (Highlight) */
+        .quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            border-left: 4px solid #d35400;
+            padding-left: 20px;
+            margin: 30px 0;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="article-container">
+        <h1>The Art of Modern Typography</h1>
+        <div class="subtitle">By Alex Designer &bull; Feb 2026</div>
+
+        <p>Typography is not just about choosing a font; it is about manipulating the white space between the letters. When done correctly, the reader does not even notice the design—they simply feel the content.</p>
+
+        <div class="quote">
+            "Good design is obvious. Great design is transparent."
+        </div>
+
+        <p>Notice how your eyes flow easily through this text? That is the power of line-height. If the lines were squished together, you would feel tired. If they were too wide, you would get lost. Finding the perfect balance is the mark of a true professional.</p>
+    </div>
+    
+</body>
+</html>
