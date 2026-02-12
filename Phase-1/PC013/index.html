@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC 13: Dark Mode Theme</title>
+    <style>
+        /* 1. DEFINE THE VARIABLES (The "Light Mode" Defaults) */
+        :root {
+            --bg-body: #f0f2f5;       /* Light Grey */
+            --bg-card: #ffffff;       /* Pure White */
+            --text-main: #333333;     /* Dark Grey */
+            --text-secondary: #666666;/* Medium Grey */
+            --accent-color: #007bff;  /* Blue */
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* 2. THE DARK MODE OVERRIDES */
+        /* When the <body> has the class "dark-mode", use THESE values instead */
+        body.dark-mode {
+            --bg-body: #121212;       /* Very Dark Grey */
+            --bg-card: #1e1e1e;       /* Slightly Lighter Grey */
+            --text-main: #e0e0e0;     /* Off-White */
+            --text-secondary: #aaaaaa;/* Light Grey */
+            --accent-color: #bb86fc;  /* Soft Purple */
+            --shadow: 0 4px 6px rgba(0,0,0,0.5); /* Darker shadow */
+        }
+
+        /* 3. APPLY THE VARIABLES (This never changes!) */
+        * { box-sizing: border-box; transition: background-color 0.3s, color 0.3s; }
+
+        body {
+            background-color: var(--bg-body); /* usage */
+            color: var(--text-main);          /* usage */
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .profile-card {
+            background-color: var(--bg-card); /* usage */
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);        /* usage */
+            text-align: center;
+            width: 300px;
+        }
+
+        h2 { margin-top: 0; }
+        
+        p { color: var(--text-secondary); } /* usage */
+
+        button {
+            background-color: var(--accent-color); /* usage */
+            color: var(--bg-card); /* Text color matches card bg */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-top: 15px;
+        }
+
+        /* TOGGLE SWITCH STYLING (Just for looks) */
+        .theme-switch-wrapper {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .theme-switch {
+            display: inline-block;
+            height: 34px;
+            position: relative;
+            width: 60px;
+        }
+        
+        .theme-switch input { display:none; }
+        
+        .slider {
+            background-color: #ccc;
+            bottom: 0;
+            cursor: pointer;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .slider:before {
+            background-color: white;
+            bottom: 4px;
+            content: "";
+            height: 26px;
+            left: 4px;
+            position: absolute;
+            transition: .4s;
+            width: 26px;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider { background-color: var(--accent-color); }
+        input:checked + .slider:before { transform: translateX(26px); }
+
+    </style>
+</head>
+<body>
+
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" onclick="toggleTheme()">
+            <div class="slider"></div>
+        </label>
+    </div>
+
+    <div class="profile-card">
+        <h2>Alex Developer</h2>
+        <p>Full Stack Engineer</p>
+        <p>I build things with CSS Variables.</p>
+        <button>Contact Me</button>
+    </div>
+
+    <script>
+        // Simple JS to toggle the class on the Body
+        function toggleTheme() {
+            var element = document.body;
+            element.classList.toggle("dark-mode");
+        }
+    </script>
+
+</body>
+</html>
