@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC 15: Micro-Interactions</title>
+    <style>
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: sans-serif;
+        }
+
+        /* 1. THE BASE STATE (Resting) */
+        .alive-btn {
+            background-color: #5e35b1; /* Deep Purple */
+            color: white;
+            border: none;
+            
+            /* Sizing */
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            
+            /* PHYSICS ENGINE: */
+            /* "Any change to transform or shadow should take 0.2s" */
+            /* cubic-bezier is the "bounciness". This one is snappy. */
+            transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
+            
+            /* SHADOW LAYER 1: The "Floor" shadow (Drop Shadow) */
+            /* SHADOW LAYER 2: The "3D Edge" shadow (Inset) */
+            box-shadow: 
+                0 10px 20px rgba(0,0,0,0.15), /* Soft shadow on floor */
+                0 0 0 0 rgba(0,0,0,0); /* No edge border yet */
+                
+            /* Starting position */
+            transform: translateY(0);
+        }
+
+        /* 2. THE HOVER STATE (Lift Up) */
+        .alive-btn:hover {
+            background-color: #200972; /* Slightly lighter purple */
+            
+            /* MOVE UP: -5px implies lifting off the table */
+            transform: translateY(-5px);
+            
+            /* SHADOW GROWS: The button is higher, so shadow is bigger/softer */
+            box-shadow: 
+                0 20px 30px rgba(0,0,0,0.2); 
+        }
+
+        /* 3. THE ACTIVE STATE (Click / Press Down) */
+        /* This runs ONLY while your mouse button is held down */
+        .alive-btn:active {
+            background-color: #512da8; /* Darker purple (pressed) */
+            
+            /* MOVE DOWN: Push it into the table */
+            transform: translateY(2px);
+            
+            /* SHADOW SHRINKS: It is touching the table now */
+            box-shadow: 
+                0 2px 5px rgba(0,0,0,0.2);
+                
+            /* INSTANT SNAP: When clicking, we want it fast, no floaty delay */
+            transition-duration: 0.05s;
+        }
+
+    </style>
+</head>
+<body>
+
+    <button class="alive-btn">CLICK ME</button>
+
+</body>
+</html>
