@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - PC026</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="logo">Admin</div>
+            <nav class="nav">
+                <a href="#" class="nav-link active">🏠 Dashboard</a>
+                <a href="#" class="nav-link">👥 Users</a>
+                <a href="#" class="nav-link">📦 Products</a>
+                <a href="#" class="nav-link">💰 Revenue</a>
+                <a href="#" class="nav-link">⚙️ Settings</a>
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main">
+            <!-- HEADER -->
+            <header class="header">
+                <h1>Dashboard</h1>
+                <div class="header-actions">
+                    <input type="text" placeholder="Search..." class="search">
+                    <button class="btn-icon">🔔</button>
+                    <button class="btn-icon">👤</button>
+                </div>
+            </header>
+
+            <!-- CONTENT -->
+            <div class="content">
+                <!-- STATS GRID -->
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #4CAF50, #45a049)">💰</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Total Revenue</div>
+                            <div class="stat-value">$45,230</div>
+                            <div class="stat-change">↑ 10% from last month</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #9C27B0, #7B1FA2)">👥</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Active Users</div>
+                            <div class="stat-value">3,240</div>
+                            <div class="stat-change">↑ 8% from last month</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #2196F3, #1976D2)">📦</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Total Orders</div>
+                            <div class="stat-value">1,234</div>
+                            <div class="stat-change">↑ 5% from last month</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #00BCD4, #00838F)">⭐</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Avg Rating</div>
+                            <div class="stat-value">4.8/5</div>
+                            <div class="stat-change">↑ 2% from last month</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CHARTS -->
+                <div class="charts-section">
+                    <!-- SALES OVERVIEW -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Sales Overview</h3>
+                            <div class="chart-controls">
+                                <button class="period-btn active">Monthly</button>
+                                <button class="period-btn">Yearly</button>
+                            </div>
+                        </div>
+                        <div class="bar-chart">
+                            <div class="bar" style="height: 65%"><span>65%</span></div>
+                            <div class="bar" style="height: 78%"><span>78%</span></div>
+                            <div class="bar" style="height: 55%"><span>55%</span></div>
+                            <div class="bar" style="height: 82%"><span>82%</span></div>
+                            <div class="bar" style="height: 90%"><span>90%</span></div>
+                            <div class="bar" style="height: 72%"><span>72%</span></div>
+                        </div>
+                    </div>
+
+                    <!-- USER GROWTH -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>User Growth</h3>
+                            <span style="font-size: 0.9rem; color: #666;">This Year</span>
+                        </div>
+                        <div class="growth-chart">
+                            <div class="growth-item">
+                                <div class="label">January</div>
+                                <div class="progress-bar"><div class="progress" style="width: 40%"></div></div>
+                                <div class="value">840</div>
+                            </div>
+                            <div class="growth-item">
+                                <div class="label">February</div>
+                                <div class="progress-bar"><div class="progress" style="width: 55%"></div></div>
+                                <div class="value">1150</div>
+                            </div>
+                            <div class="growth-item">
+                                <div class="label">March</div>
+                                <div class="progress-bar"><div class="progress" style="width: 75%"></div></div>
+                                <div class="value">2240</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TRANSACTIONS TABLE -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Recent Transactions</h3>
+                        <a href="#" style="color: #6366F1; text-decoration: none;">View All →</a>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Customer</th>
+                                <th>Amount</th>
+                                <th style="text-align: center;">Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#1001</td>
+                                <td>Sarah Johnson</td>
+                                <td>$240.00</td>
+                                <td style="text-align: center;"><span class="badge success">✓ Completed</span></td>
+                                <td>Feb 14, 2026</td>
+                            </tr>
+                            <tr>
+                                <td>#1002</td>
+                                <td>Mike Chen</td>
+                                <td>$120.50</td>
+                                <td style="text-align: center;"><span class="badge success">✓ Completed</span></td>
+                                <td>Feb 13, 2026</td>
+                            </tr>
+                            <tr>
+                                <td>#1003</td>
+                                <td>Alex Rivera</td>
+                                <td>$150.00</td>
+                                <td style="text-align: center;"><span class="badge warning">⏱ Pending</span></td>
+                                <td>Feb 12, 2026</td>
+                            </tr>
+                            <tr>
+                                <td>#1004</td>
+                                <td>Emma Davis</td>
+                                <td>$890.99</td>
+                                <td style="text-align: center;"><span class="badge success">✓ Completed</span></td>
+                                <td>Feb 11, 2026</td>
+                            </tr>
+                            <tr>
+                                <td>#1005</td>
+                                <td>John Smith</td>
+                                <td>$120.00</td>
+                                <td style="text-align: center;"><span class="badge danger">✕ Failed</span></td>
+                                <td>Feb 10, 2026</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
