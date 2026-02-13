@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC 17: Animation Masterclass</title>
+    <style>
+        /* IMPORT FONTS */
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600&display=swap');
+
+        /* RESET & SCROLL ENGINE */
+        * { box-sizing: border-box; }
+        
+        html {
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background-color: #050505;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* PAGE SETUP */
+        section {
+            height: 100vh;
+            width: 100%;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            border-bottom: 1px solid #222;
+        }
+
+        h2 { 
+            position: absolute; top: 40px; 
+            font-family: 'JetBrains Mono', monospace; 
+            color: #666; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem;
+        }
+
+        /* =========================================
+           PAGE 1: THE LAB (Keyframes & Physics)
+           ========================================= */
+        #page1 {
+            background-color: #0f0f11;
+            /* Grid Pattern for that "Blueprint" feel */
+            background-image: radial-gradient(#333 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .lab-container {
+            display: flex; gap: 100px; align-items: flex-end;
+        }
+
+        /* TASK 1: THE INFINITE SPINNER */
+        .spinner-box { text-align: center; }
+        
+        .spinner {
+            width: 80px; height: 80px;
+            border: 6px solid rgba(255,255,255,0.1);
+            border-top: 6px solid #00d2ff; /* Blue Highlight */
+            border-radius: 50%;
+            
+            /* ANIMATION: spin | 1s duration | linear speed | infinite loop */
+            animation: spin 1s linear infinite;
+        }
+
+        /* TASK 2: THE BOUNCING BALL */
+        .ball-box { position: relative; width: 100px; height: 200px; }
+        
+        .ball {
+            width: 50px; height: 50px;
+            background: #ff4757;
+            border-radius: 50%;
+            position: absolute; bottom: 60px; left: 25px;
+            
+            /* ANIMATION: bounce | 0.8s | infinite | alternate (go back and forth) */
+            animation: bounce 0.8s infinite alternate;
+        }
+
+        .shadow {
+            width: 50px; height: 10px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            position: absolute; bottom: 0; left: 25px;
+            filter: blur(4px);
+            animation: shadow-scale 0.8s infinite alternate;
+        }
+
+        /* KEYFRAMES (The Timeline) */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0) scale(1.1, 0.9); animation-timing-function: ease-out; } /* Floor (Squish) */
+            100% { transform: translateY(-150px) scale(1); animation-timing-function: ease-in; } /* Peak */
+        }
+
+        @keyframes shadow-scale {
+            0% { transform: scale(1); opacity: 0.8; } /* Big shadow */
+            100% { transform: scale(0.5); opacity: 0.2; } /* Small shadow */
+        }
+
+
+        /* =========================================
+           PAGE 2: PRODUCTION (Skeletons & Reveals)
+           ========================================= */
+        #page2 {
+            background-color: #ffffff; /* Clean App Look */
+            color: #111;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .app-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+            max-width: 800px; width: 100%; padding: 20px;
+        }
+
+        /* CARD STYLE */
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+            padding: 20px;
+            height: 250px;
+            display: flex; flex-direction: column; gap: 15px;
+        }
+
+        /* --- TYPE 1: THE SKELETON LOADER (Loading State) --- */
+        /* This simulates data being fetched */
+        .skeleton {
+            background: #f0f0f0;
+            border-radius: 4px;
+            /* THE SHIMMER MAGIC */
+            background-image: linear-gradient(
+                90deg, 
+                #f0f0f0 0px, 
+                #f8f8f8 80px, 
+                #f0f0f0 160px
+            );
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite linear;
+        }
+
+        .s-img { height: 120px; width: 100%; border-radius: 8px; }
+        .s-title { height: 20px; width: 80%; }
+        .s-text { height: 14px; width: 60%; }
+
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        /* --- TYPE 2: THE SCROLL REVEAL (Loaded State) --- */
+        /* These elements start hidden and slide up */
+        .content-card {
+            justify-content: center; align-items: center; text-align: center;
+        }
+
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        /* When the class 'active' is added by JS, they appear */
+        .reveal-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stagger delays */
+        .d-100 { transition-delay: 0.1s; }
+        .d-200 { transition-delay: 0.2s; }
+        .d-300 { transition-delay: 0.3s; }
+
+        .btn {
+            background: black; color: white; border: none; padding: 10px 20px; 
+            border-radius: 20px; font-weight: 600; cursor: pointer; margin-top: 10px;
+        }
+        .btn:hover { transform: scale(1.05); }
+
+    </style>
+</head>
+<body>
+
+    <section id="page1">
+        <h2>Part 1: The Theory (Keyframes)</h2>
+        
+        <div class="lab-container">
+            <div class="spinner-box">
+                <div class="spinner"></div>
+                <p style="margin-top:20px; font-family:'JetBrains Mono'; color:#555;">linear</p>
+            </div>
+
+            <div class="ball-box">
+                <div class="ball"></div>
+                <div class="shadow"></div>
+                <p style="position:absolute; bottom:-40px; left:20px; font-family:'JetBrains Mono'; color:#555;">ease-in</p>
+            </div>
+        </div>
+        <div style="position:absolute; bottom:30px; color:#444; font-size:0.8rem;">↓ Scroll for Production Code ↓</div>
+    </section>
+
+    <section id="page2">
+        <h2>Part 2: Real World (Loaders & Reveals)</h2>
+
+        <div class="app-grid">
+            
+            <div class="card">
+                <div class="skeleton s-img"></div>
+                <div class="skeleton s-title"></div>
+                <div class="skeleton s-text"></div>
+                <div class="skeleton s-text"></div>
+            </div>
+
+            <div class="card content-card" id="trigger-box">
+                <div class="reveal-item d-100" style="font-size:2rem;">✨</div>
+                <h3 class="reveal-item d-200" style="margin:0;">Content Loaded</h3>
+                <p class="reveal-item d-300" style="color:#666; font-size:0.9rem;">
+                    This content slid in smoothly when you scrolled here.
+                </p>
+                <button class="reveal-item d-300 btn">Action</button>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // 1. Get the items inside the section
+                const items = entry.target.querySelectorAll('.reveal-item');
+
+                if (entry.isIntersecting) {
+                    // ENTERING SCREEN: Add class to play animation
+                    items.forEach(item => item.classList.add('active'));
+                } else {
+                    // LEAVING SCREEN: Remove class to reset it!
+                    items.forEach(item => item.classList.remove('active'));
+                }
+            });
+        }, { 
+            threshold: 0.2 // Trigger a bit earlier (20% visible) so it feels more responsive
+        });
+
+        observer.observe(document.getElementById('trigger-box'));
+    </script>
+
+</body>
+</html>
