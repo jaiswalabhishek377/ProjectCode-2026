@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC 21: Object Fit & Clip Path</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f0f2f5;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+            padding: 50px;
+        }
+
+        /* 1. THE PROFILE CARD */
+        .card {
+            background: white;
+            width: 350px;
+            border-radius: 20px;
+            overflow: hidden; /* Clips the header image at corners */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .header-img {
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            /* CLIP PATH: Cuts a cool shape (The "Slant") */
+            /* coordinates: top-left, top-right, bottom-right, bottom-left */
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+        }
+
+        .profile-img {
+            width: 120px;
+            
+            /* ASPECT RATIO: Modern way to set square/rectangle */
+            /* No more "height: 120px" needed */
+            aspect-ratio: 1 / 1; 
+            
+            border-radius: 50%;
+            border: 5px solid white;
+            margin-top: -70px; /* Pull it up into the header */
+            position: relative; /* Ensure it sits on top */
+            z-index: 2;
+            
+            /* THE MAGIC: Prevents Squashing */
+            object-fit: cover; 
+            background: #eee;
+        }
+
+        .card h2 { margin: 10px 0 5px 0; }
+        .card p { color: #666; margin-bottom: 30px; }
+
+        /* 2. THE GALLERY (Responsive Grid) */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .gallery-item {
+            width: 100%;
+            /* Force every image to be a 4:3 rectangle */
+            aspect-ratio: 4 / 3; 
+            border-radius: 12px;
+            
+            /* THE MAGIC: Even if the image is tall/wide, 
+               it will crop to fill this 4:3 box perfectly */
+            object-fit: cover; 
+            
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="header-img"></div>
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" 
+             class="profile-img" alt="Profile">
+        <h2>Jane Doe</h2>
+        <p>Senior UI Engineer</p>
+    </div>
+
+    <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470" class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e" class="gallery-item">
+    </div>
+
+</body>
+</html>
