@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC 18: Pseudo-Magic</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Inter:wght@400;600&display=swap');
+
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            gap: 80px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* =========================================
+           TASK 1: THE MAGAZINE QUOTE
+           ========================================= */
+        .quote-box {
+            position: relative; /* Anchor for absolute positioning */
+            max-width: 600px;
+            background: white;
+            padding: 40px 60px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* THE GHOST ELEMENT (The Big Quote Mark) */
+        .quote-box::before {
+            content: '“'; /* The actual character */
+            
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            
+            font-family: 'Playfair Display', serif;
+            font-size: 10rem; /* Massive */
+            color: #e0e0e0; /* Light Grey */
+            opacity: 0.5;
+            z-index: 0; /* Put it BEHIND the text */
+            line-height: 1; /* Fix height issues */
+        }
+
+        /* Styling the real text to sit on top */
+        .quote-box p {
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+        }
+        
+        .author {
+            margin-top: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        /* The decorative line next to author */
+        .author::before {
+            content: ''; /* Empty box */
+            display: inline-block;
+            width: 40px;
+            height: 2px;
+            background: #ff4757;
+            vertical-align: middle;
+            margin-right: 15px;
+        }
+
+
+        /* =========================================
+           TASK 2: THE "SHINE" BUTTON
+           ========================================= */
+        .shiny-btn {
+            position: relative; /* Anchor */
+            padding: 20px 50px;
+            background: #111;
+            color: white;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            overflow: hidden; /* CRITICAL: Hides the shine when it's outside */
+        }
+
+        /* THE GHOST ELEMENT (The Beam of Light) */
+        .shiny-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%; /* Start off-screen to the left */
+            width: 100%;
+            height: 100%;
+            
+            /* The Shine Gradient */
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.4),
+                transparent
+            );
+            
+            /* Slant it */
+            transform: skewX(-20deg);
+            transition: 0.5s; /* Smooth movement */
+        }
+
+        /* ANIMATION ON HOVER */
+        .shiny-btn:hover::after {
+            left: 100%; /* Move all the way to the right */
+            transition: 0.7s; /* Slower, more dramatic */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="quote-box">
+        <p>Design is not just what it looks like and feels like. Design is how it works.</p>
+        <div class="author">Steve Jobs</div>
+    </div>
+
+    <button class="shiny-btn">Hover For Magic</button>
+
+</body>
+</html>
