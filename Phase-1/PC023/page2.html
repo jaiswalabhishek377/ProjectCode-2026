@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC 23: Pricing Strategy</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+
+        /* 1. THE ENVIRONMENT */
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8fafc;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            padding: 40px 20px;
+        }
+
+        /* 2. THE GRID (Mobile-First) */
+        .pricing-container {
+            display: flex;
+            flex-direction: column; /* Stack on mobile */
+            gap: 20px;
+            max-width: 1100px;
+            width: 100%;
+            align-items: center;
+        }
+
+        /* 3. THE CARDS */
+        .price-card {
+            background: white;
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid #e2e8f0;
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 4. THE "POPPED" EFFECT (Standard Desktop) */
+        /* We apply this to the middle card */
+        .price-card--featured {
+            border: 2px solid #6366f1;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            background: #ffffff;
+            z-index: 2;
+        }
+
+        .price-card--featured::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #6366f1;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        /* 5. TYPOGRAPHY & BUTTONS */
+        .price-card__tier { color: #64748b; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 10px; }
+        .price-card__amount { font-size: 3rem; font-weight: 800; color: #0f172a; }
+        .price-card__amount span { font-size: 1rem; color: #94a3b8; }
+        
+        .price-card__list { list-style: none; padding: 0; margin: 30px 0; flex-grow: 1; }
+        .price-card__list li { padding: 10px 0; color: #475569; font-size: 0.95rem; }
+        .price-card__list li::before { content: '✓'; color: #6366f1; margin-right: 10px; font-weight: bold; }
+
+        .btn-price {
+            background: #0f172a;
+            color: white;
+            padding: 14px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .price-card--featured .btn-price { background: #6366f1; }
+        .btn-price:hover { opacity: 0.9; transform: scale(1.02); }
+
+        /* =========================================
+           DESKTOP ADAPTATION
+           ========================================= */
+        @media (min-width: 1024px) {
+            .pricing-container {
+                flex-direction: row; /* Side-by-side */
+                justify-content: center;
+                align-items: center; /* Crucial for the scale effect */
+            }
+
+            .price-card--featured {
+                transform: scale(1.08); /* THE POP OUT */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="pricing-container">
+        
+        <div class="price-card">
+            <div class="price-card__tier">Starter</div>
+            <div class="price-card__amount">$0<span>/mo</span></div>
+            <ul class="price-card__list">
+                <li>1 Project</li>
+                <li>Basic Analytics</li>
+                <li>Community Support</li>
+            </ul>
+            <a href="#" class="btn-price">Join Free</a>
+        </div>
+
+        <div class="price-card price-card--featured">
+            <div class="price-card__tier">Professional</div>
+            <div class="price-card__amount">$29<span>/mo</span></div>
+            <ul class="price-card__list">
+                <li>Unlimited Projects</li>
+                <li>Advanced RAG Tools</li>
+                <li>Priority Support</li>
+                <li>Custom Branding</li>
+            </ul>
+            <a href="#" class="btn-price">Get Started</a>
+        </div>
+
+        <div class="price-card">
+            <div class="price-card__tier">Team</div>
+            <div class="price-card__amount">$99<span>/mo</span></div>
+            <ul class="price-card__list">
+                <li>Unlimited Everything</li>
+                <li>Dedicated Manager</li>
+                <li>API Access</li>
+            </ul>
+            <a href="#" class="btn-price">Contact Sales</a>
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 60px;">
+        <a href="index.html" style="color: #6366f1; text-decoration: none; font-weight: 600; font-size: 1rem;">← Back to Page 1</a>
+    </div>
+    
+</body>
+</html>

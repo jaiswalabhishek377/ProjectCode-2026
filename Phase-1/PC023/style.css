@@ -1,0 +1,355 @@
+/* ========================================
+   PRICING TABLES - CSS CONCEPTS GUIDE
+   ======================================== */
+
+/* Root Variables - CSS Custom Properties
+   Benefit: Easy to maintain colors, sizes across entire project */
+:root {
+    --primary-color: #6C5CE7;
+    --secondary-color: #A29BFE;
+    --text-dark: #2D3436;
+    --text-light: #636E72;
+    --bg-light: #F8F9FA;
+    --white: #FFFFFF;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --shadow-dark: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* ========================================
+   RESET & GLOBAL STYLES
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+/* ========================================
+   CONTAINER & HEADER
+   ======================================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    color: var(--white);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    margin-bottom: 50px;
+}
+
+/* ========================================
+   PRICING CARDS LAYOUT
+   CONCEPT: Flexbox
+   - Arranges cards in a row
+   - center: vertically aligns items
+   - gap: creates space between items
+   - flex-wrap: allows cards to wrap on mobile
+   ======================================== */
+.pricing-cards {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;  /* Aligns cards to bottom, highlights center card */
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* ========================================
+   CARD STYLING
+   CONCEPT: Box Model, Shadows, Border Radius
+   - box-shadow: creates depth
+   - border-radius: rounded corners
+   - transition: smooth animations for hover states
+   ======================================== */
+.card {
+    background: var(--white);
+    border-radius: 15px;
+    padding: 40px 30px;
+    width: 280px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    position: relative;
+    text-align: center;
+}
+
+/* Hover Effect Concept:
+   - transform: scale() enlarges the card
+   - box-shadow: increased shadow creates floating effect
+   - Dark mode effect on hover */
+.card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: var(--shadow-dark);
+}
+
+/* ========================================
+   PREMIUM/CENTER CARD - "POPPED OUT" EFFECT
+   CONCEPT: CSS Transform & Scale
+   - transform: scale(1.1) makes center card larger
+   - translateY(-40px) lifts it up
+   - Border accent for premium feel
+   ======================================== */
+.card.premium {
+    border-top: 5px solid var(--primary-color);
+    transform: scale(1.1) translateY(-40px);
+    box-shadow: var(--shadow-dark);
+}
+
+.card.premium:hover {
+    transform: scale(1.15) translateY(-50px);
+}
+
+/* Badge for Most Popular */
+.badge {
+    background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+    color: var(--white);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+/* ========================================
+   CARD CONTENT STYLING
+   ======================================== */
+.plan-name {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+}
+
+/* Price Display - Flexbox for alignment */
+.price {
+    margin: 25px 0;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 5px;
+}
+
+.currency {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+
+.amount {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+.period {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.description {
+    color: var(--text-light);
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+
+/* Features List */
+.features {
+    list-style: none;
+    margin: 30px 0;
+    text-align: left;
+}
+
+.features li {
+    color: var(--text-light);
+    padding: 12px 0;
+    border-bottom: 1px solid var(--bg-light);
+    font-size: 0.95rem;
+}
+
+.features li:last-child {
+    border-bottom: none;
+}
+
+/* ========================================
+   BUTTONS
+   CONCEPT: Pseudo-classes (:hover, :active)
+   - Different styles for different button types
+   ======================================== */
+.btn {
+    width: 100%;
+    padding: 12px 20px;
+    border: 2px solid var(--primary-color);
+    background: transparent;
+    color: var(--primary-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Primary Button Style (for premium card) */
+.btn-primary {
+    background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+    color: var(--white);
+    border-color: transparent;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #764BA2 0%, #667EEA 100%);
+    color: var(--white);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   CONCEPT: Media Queries
+   - Different layouts for different screen sizes
+   - Mobile-first approach
+   ======================================== */
+
+/* Tablet Screens (768px and below) */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .pricing-cards {
+        gap: 20px;
+    }
+
+    .card {
+        width: 250px;
+        padding: 30px 20px;
+    }
+
+    /* Remove the "popped out" effect on tablets for better space usage */
+    .card.premium {
+        transform: scale(1) translateY(0);
+    }
+
+    .card.premium:hover {
+        transform: translateY(-10px) scale(1.05);
+    }
+}
+
+/* Mobile Screens (480px and below) */
+@media (max-width: 480px) {
+    body {
+        padding: 20px 10px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 30px;
+    }
+
+    /* Stack cards vertically on mobile */
+    .pricing-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 280px;
+        padding: 25px 20px;
+    }
+
+    .amount {
+        font-size: 2.5rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/* ========================================
+   ANIMATION ENHANCEMENT
+   CONCEPT: CSS Keyframes for smooth entry
+   ======================================== */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: slideUp 0.6s ease forwards;
+}
+
+.card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+/* ========================================
+   PAGE NAVIGATION
+   ======================================== */
+.page-nav {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.btn-nav {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+.btn-nav:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-dark);
+}
+
+.btn-nav:active {
+    transform: translateY(0);
+}
