@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC 16: The Transform Masterclass</title>
+    <style>
+        /* IMPORTS: One Clean font for Page 1, One Tech font for Page 2 */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Share+Tech+Mono&display=swap');
+
+        /* RESET & SCROLL SNAP ENGINE */
+        * { box-sizing: border-box; }
+        
+        html {
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            overflow-x: hidden; /* Hide horizontal scrollbars */
+        }
+
+        /* EACH PAGE IS A FULL SCREEN */
+        section {
+            height: 100vh;
+            width: 100%;
+            scroll-snap-align: start;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* =========================================
+           PAGE 1: THE 3D FLIP (Architect Style)
+           ========================================= */
+        #page1 {
+            background-color: #ecf0f1; /* Clean Grey */
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* 1. THE STAGE (Camera Distance) */
+        .flip-container {
+            width: 300px;
+            height: 450px;
+            perspective: 1000px; /* Crucial for 3D effect */
+        }
+
+        /* 2. THE ACTOR (The Double-Sided Card) */
+        .flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d; /* Keep children in 3D space */
+        }
+
+        /* TRIGGER: Flip on Hover */
+        .flip-container:hover .flip-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* 3. THE FACES (Front & Back) */
+        .flip-front, .flip-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden; /* Hide the back when flipped */
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .flip-front {
+            background: white;
+            color: #2c3e50;
+        }
+
+        .flip-back {
+            background: linear-gradient(135deg, #ff6b6b, #ee5253); /* Red Gradient */
+            color: white;
+            transform: rotateY(180deg); /* Start flipped away */
+        }
+
+        /* Page 1 Styling Details */
+        .shoe-img { width: 80%; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.2)); }
+        .btn-buy { background: white; color: #ee5253; border: none; padding: 12px 30px; border-radius: 30px; font-weight: bold; cursor: pointer; margin-top: 20px; transition: 0.3s; }
+        .btn-buy:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+
+
+        /* =========================================
+           PAGE 2: THE CYBER GLITCH (Distortion Style)
+           ========================================= */
+        #page2 {
+            background-color: #0b0b0b; /* Deep Black */
+            font-family: 'Share Tech Mono', monospace;
+            overflow: hidden; /* Trap the spinning background */
+        }
+
+        /* 1. THE CARD (Scale & Ease-In) */
+        .cyber-card {
+            width: 320px;
+            height: 480px;
+            background: #111;
+            border: 2px solid #0ff; /* Cyan */
+            color: #0ff;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+            /* EASE-IN: Starts slow, snaps fast */
+            transition: all 0.4s ease-in; 
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        /* 2. BACKGROUND STRIPE (Rotate) */
+        .cyber-bg {
+            position: absolute;
+            width: 200%;
+            height: 40%;
+            background: rgba(0, 255, 255, 0.05);
+            z-index: 0;
+            
+            /* ROTATE: Tilted 45 degrees */
+            transform: rotate(-45deg); 
+            transition: 0.5s;
+        }
+
+        /* 3. TEXT (Skew) */
+        .glitch-text {
+            font-size: 3rem;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+            transition: 0.3s;
+        }
+
+        /* --- HOVER STATES --- */
+        
+        .cyber-card:hover {
+            /* SCALE: Grow 10% */
+            transform: scale(1.1);
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.4); /* Neon Glow */
+            border-color: #fff;
+        }
+
+        .cyber-card:hover .glitch-text {
+            /* SKEW: Slant text to look "fast" */
+            transform: skewX(-20deg); 
+            color: white;
+            text-shadow: 3px 3px 0px #f0f; /* Magenta Shadow */
+        }
+
+         .cyber-card:hover .cyber-bg {
+            /* ROTATE + SCALE: Spin and grow the background */
+            transform: rotate(-25deg) scale(1.5);
+            background: rgba(0, 255, 255, 0.1);
+        }
+
+        /* Hint Text */
+        .hint { position: absolute; bottom: 30px; opacity: 0.5; font-size: 0.8rem; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% {transform: translateY(0);} 50% {transform: translateY(10px);} }
+
+    </style>
+</head>
+<body>
+
+    <section id="page1">
+        <div class="flip-container">
+            <div class="flip-inner">
+                <div class="flip-front">
+                    <img src="https://cdn-icons-png.flaticon.com/512/732/732229.png" class="shoe-img" alt="Shoe">
+                    <h2>Air Velocity</h2>
+                    <p style="color: #7f8c8d;">Hover to flip</p>
+                </div>
+                <div class="flip-back">
+                    <h1>$189.00</h1>
+                    <p>Reactive Cushioning.</p>
+                    <p>Aerodynamic Shape.</p>
+                    <button class="btn-buy">ADD TO CART</button>
+                </div>
+            </div>
+        </div>
+        <div class="hint" style="color: black;">↓ Scroll for Cyberpunk Mode ↓</div>
+    </section>
+
+    <section id="page2">
+        <div class="cyber-card">
+            <div class="cyber-bg"></div>
+            <h1 class="glitch-text">CYBER</h1>
+            <p style="z-index: 1;">SYSTEM: SECURE</p>
+        </div>
+        <div class="hint" style="color: white;">Hover to Glitch</div>
+    </section>
+
+</body>
+</html>
