@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC 24: Testimonial Carousel</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&display=swap');
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h2 { margin-bottom: 40px; font-weight: 800; letter-spacing: -1px; }
+
+        /* 1. THE CAROUSEL CONTAINER (The Track) */
+        .carousel {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            max-width: 1000px;
+            padding: 20px 5%; /* Side padding allows first/last cards to be centered */
+            
+            /* THE MAGIC: Enabling Scroll Snapping */
+            overflow-x: auto;
+            scroll-snap-type: x mandatory; 
+            scroll-behavior: smooth;
+            
+            /* Hide scrollbars (Standard for clean UI) */
+            -ms-overflow-style: none;  
+            scrollbar-width: none; 
+        }
+        .carousel::-webkit-scrollbar { display: none; }
+
+        /* 2. THE TESTIMONIAL CARDS */
+        .testimonial {
+            /* 1. SIZING: On mobile, cards take up 85% of screen. On desktop, they are fixed. */
+            flex: 0 0 85%; 
+            min-width: 300px;
+            
+            background: #f8fafc;
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid #e2e8f0;
+            
+            /* THE MAGIC: Telling the card where to "stop" when scrolling */
+            scroll-snap-align: center; 
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .testimonial__text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #1e293b;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        .testimonial__user {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #6366f1;
+            object-fit: cover;
+        }
+
+        .user-info h4 { margin: 0; font-size: 1rem; color: #0f172a; }
+        .user-info p { margin: 0; font-size: 0.8rem; color: #64748b; }
+
+        /* DESKTOP ADAPTATION */
+        @media (min-width: 1024px) {
+            .testimonial {
+                flex: 0 0 400px; /* Show multiple cards on desktop */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <h2>Loved by developers</h2>
+
+    <div class="carousel">
+        
+        <article class="testimonial">
+            <p class="testimonial__text">"VERBA completely changed how I build RAG apps. The C++ integration is seamless."</p>
+            <div class="testimonial__user">
+                <img src="https://i.pravatar.cc/150?u=1" class="user-avatar" alt="Alex Rivera">
+                <div class="user-info">
+                    <h4>Alex Rivera</h4>
+                    <p>3rd Year CSE Student</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="testimonial">
+            <p class="testimonial__text">"Finally a framework that doesn't feel like a toy. High performance and clean architecture."</p>
+            <div class="testimonial__user">
+                <img src="https://i.pravatar.cc/150?u=2" class="user-avatar" alt="Sarah Chen">
+                <div class="user-info">
+                    <h4>Sarah Chen</h4>
+                    <p>Senior AI Engineer</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="testimonial">
+            <p class="testimonial__text">"The scroll-snap implementation here is so smooth. Great attention to detail."</p>
+            <div class="testimonial__user">
+                <img src="https://i.pravatar.cc/150?u=3" class="user-avatar" alt="Jordan Blake">
+                <div class="user-info">
+                    <h4>Jordan Blake</h4>
+                    <p>Lead Developer</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="testimonial">
+            <p class="testimonial__text">"Scaling my RAG project was a nightmare until I found this setup. Highly recommend."</p>
+            <div class="testimonial__user">
+                <img src="https://i.pravatar.cc/150?u=4" class="user-avatar" alt="Marcus Tan">
+                <div class="user-info">
+                    <h4>Marcus Tan</h4>
+                    <p>Startup Founder</p>
+                </div>
+            </div>
+        </article>
+
+    </div>
+
+    <p style="margin-top: 40px; color: #94a3b8; font-size: 0.9rem;">← Swipe or Scroll →</p>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" style="color: #6366f1; text-decoration: none; font-weight: 600; font-size: 1rem;">← Back to Page 1</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,396 @@
+/* ========================================
+   TESTIMONIAL CAROUSEL - CSS SCROLL SNAP
+   ======================================== */
+
+/* Root Variables */
+:root {
+    --primary-color: #6C5CE7;
+    --secondary-color: #A29BFE;
+    --text-dark: #2D3436;
+    --text-light: #636E72;
+    --bg-light: #F8F9FA;
+    --white: #FFFFFF;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+    min-height: 100vh;
+    padding: 60px 20px;
+}
+
+/* ========================================
+   CONTAINER & HEADER
+   ======================================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.header h1 {
+    color: var(--white);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+}
+
+/* ========================================
+   CSS SCROLL SNAP - MAIN CONCEPT
+   
+   What is Scroll Snap?
+   - Native CSS feature that snaps scrolling to specific points
+   - No JavaScript needed for smooth carousel behavior
+   - Great for mobile and touch devices
+   
+   How it works:
+   1. scroll-snap-type: Sets snapping rules on container
+   2. scroll-snap-align: Defines snap points on children
+   3. scroll-padding: Adds spacing around snap areas
+   
+   Why use it?
+   - Better performance (GPU accelerated)
+   - Smooth, native scrolling on mobile
+   - Accessibility-friendly
+   - Works on horizontal & vertical scrolling
+   ======================================== */
+
+.testimonials-wrapper {
+    /* SCROLL SNAP CONTAINER PROPERTIES */
+    
+    /* scroll-snap-type: x mandatory;
+       - x = horizontal scrolling
+       - mandatory = must snap to an element
+       - optional = snaps if close enough
+       - proximity = snaps when near a snap point
+    */
+    scroll-snap-type: x mandatory;
+    
+    /* Display flex for horizontal layout */
+    display: flex;
+    
+    /* Allow overflow for scrolling */
+    overflow-x: auto;
+    overflow-y: hidden;
+    
+    /* Hide scrollbar but keep scrolling functional */
+    scrollbar-width: thin;
+    scrollbar-color: var(--secondary-color) rgba(255, 255, 255, 0.1);
+    
+    /* Smooth scrolling behavior */
+    scroll-behavior: smooth;
+    
+    /* Add padding for spacing */
+    padding: 20px 0;
+    gap: 30px;
+    
+    /* Snap padding - space between edge and snap point */
+    scroll-padding: 40px;
+    
+    /* Prevent selection while scrolling */
+    user-select: none;
+}
+
+/* Hide scrollbar on Chrome/Safari/Edge */
+.testimonials-wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+
+.testimonials-wrapper::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.testimonials-wrapper::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+.testimonials-wrapper::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+/* ========================================
+   TESTIMONIAL CARDS
+   
+   scroll-snap-align: center;
+   - Means each card snaps to center of container
+   - Other options: start, end, center
+   
+   scroll-snap-stop: always;
+   - Forces scrolling to stop at each card
+   - Prevents skipping cards
+   ======================================== */
+
+.testimonial-card {
+    /* SCROLL SNAP CHILD PROPERTIES */
+    /* Snap to center of the viewport */
+    scroll-snap-align: center;
+    
+    /* Don't skip this card when scrolling */
+    scroll-snap-stop: always;
+    
+    /* Prevent card from shrinking */
+    flex-shrink: 0;
+    
+    /* Fixed width for consistent card size */
+    width: 380px;
+    
+    /* Styling */
+    background: var(--white);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.testimonial-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* ========================================
+   CARD CONTENT
+   ======================================== */
+
+.card-content {
+    margin-bottom: 25px;
+}
+
+/* Star Rating */
+.stars {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.star {
+    font-size: 1.3rem;
+    color: #FFD700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Review Text */
+.review-text {
+    font-size: 1rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+    font-style: italic;
+    position: relative;
+    padding: 0 15px;
+}
+
+/* Quotation mark styling */
+.review-text::before {
+    content: '"';
+    position: absolute;
+    left: 0;
+    top: -10px;
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    opacity: 0.3;
+    line-height: 1;
+}
+
+/* ========================================
+   CLIENT INFORMATION
+   ======================================== */
+
+.client-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-top: 20px;
+    border-top: 1px solid var(--bg-light);
+}
+
+.client-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary-color);
+}
+
+.client-details {
+    flex: 1;
+}
+
+.client-name {
+    font-size: 1rem;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.client-title {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin: 3px 0 0 0;
+}
+
+/* ========================================
+   SCROLL INDICATOR
+   Shows users they can scroll horizontally
+   ======================================== */
+
+.scroll-indicator {
+    text-align: center;
+    margin-top: 40px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   
+   CSS Scroll Snap adapts naturally:
+   - Desktop: Wider viewport, more cards visible
+   - Tablet: Medium cards visible
+   - Mobile: One card at a time
+   ======================================== */
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .testimonial-card {
+        width: 300px;
+        padding: 25px;
+    }
+
+    .testimonials-wrapper {
+        gap: 20px;
+    }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+    body {
+        padding: 30px 10px;
+    }
+
+    .header h1 {
+        font-size: 1.5rem;
+    }
+
+    .subtitle {
+        font-size: 0.95rem;
+    }
+
+    /* Full width cards on mobile */
+    .testimonial-card {
+        width: 100%;
+        max-width: 280px;
+        padding: 20px;
+    }
+
+    .review-text {
+        font-size: 0.9rem;
+    }
+
+    .testimonials-wrapper {
+        gap: 15px;
+        scroll-padding: 20px;
+    }
+
+    .scroll-indicator {
+        font-size: 0.85rem;
+    }
+}
+
+/* ========================================
+   ADVANCED: SNAP AREA SIZE
+   
+   If you want different snap behavior:
+   - scroll-snap-type: x proximity;
+     = Snaps when close to snap point
+   
+   - scroll-snap-type: x optional;
+     = May skip cards if scrolling fast
+   ======================================== */
+
+/* Optional: Smooth scroll-snap with momentum scrolling */
+.testimonials-wrapper {
+    -webkit-overflow-scrolling: touch;  /* Momentum scrolling on iOS */
+}
+
+/* ========================================
+   ACCESSIBILITY IMPROVEMENTS
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .testimonials-wrapper {
+        scroll-behavior: auto;
+    }
+
+    .testimonial-card,
+    .scroll-indicator {
+        animation: none;
+    }
+}
+
+/* Focus visible for keyboard navigation */
+.testimonial-card:focus-visible {
+    outline: 3px solid var(--secondary-color);
+    outline-offset: 5px;
+}
+
+/* ========================================
+   PAGE NAVIGATION BUTTON
+   ======================================== */
+.page-nav {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.btn-next {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+}
+
+.btn-next:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(108, 92, 231, 0.5);
+}
+
+.btn-next:active {
+    transform: translateY(0);
+}
