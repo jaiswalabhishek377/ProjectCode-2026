@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC 22: Structural Selectors</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace; /* Invoice look */
+            background: #1a1a1a;
+            color: #ccc;
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+        }
+
+        table {
+            width: 600px;
+            border-collapse: collapse; /* Removes gaps between cells */
+            background: #222;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            margin-right: 30px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+
+        /* --- THE MAGIC SELECTORS (No classes needed!) --- */
+
+        /* 1. HEADER LOGIC */
+        /* Target the 'th' elements only inside 'thead' */
+        thead th {
+            background: #333;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* 2. ZEBRA STRIPING */
+        /* Target every EVEN row (2, 4, 6...) inside tbody */
+        tbody tr:nth-of-type(even) {
+            background: #2a2a2a;
+        }
+
+        /* 3. HOVER EFFECT */
+        tbody tr:hover {
+            background: #444; /* Overrides the even/odd color */
+            color: white;
+            cursor: pointer;
+        }
+
+        /* 4. THE "TOTAL" ROW */
+        /* Target the LAST row of the table body */
+        tbody tr:last-child {
+            border-top: 2px solid #555;
+            font-weight: bold;
+            color: #fff;
+            background: #222; /* Reset background */
+        }
+
+        /* 5. PRICE COLUMN */
+        /* Target the LAST cell in EVERY row */
+        td:last-child, th:last-child {
+            text-align: right;
+            color: #4ade80; /* Matrix Green */
+        }
+
+        /* 6. STATUS PILL (Adjacent Sibling) */
+        /* Let's style the text next to the checkmark */
+        /* Note: This is just CSS logic example */
+        
+        .status::before {
+            content: '•';
+            color: #4ade80;
+            margin-right: 5px;
+            font-size: 1.5rem;
+            vertical-align: middle;
+            line-height: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Service</th>
+                <th>Status</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>#101</td>
+                <td>UI Design</td>
+                <td class="status">Paid</td>
+                <td>$1,200.00</td>
+            </tr>
+            <tr>
+                <td>#102</td>
+                <td>Frontend Dev</td>
+                <td class="status">Paid</td>
+                <td>$3,400.00</td>
+            </tr>
+            <tr>
+                <td>#103</td>
+                <td>Consulting</td>
+                <td class="status">Pending</td>
+                <td>$500.00</td>
+            </tr>
+            <tr>
+                <td>#104</td>
+                <td>SEO Audit</td>
+                <td class="status">Paid</td>
+                <td>$850.00</td>
+            </tr>
+            <tr>
+                <td colspan="3">Total Revenue</td>
+                <td>$5,950.00</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PC 22: BEM Architecture</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #1a1a1a;
+            color: #ccc;
+            padding: 50px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* 1. BLOCK: The Container */
+        .invoice {
+            width: 600px;
+            border-collapse: collapse;
+            background: #222;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        /* 2. ELEMENTS: The Children (__double_underscore) */
+        .invoice__head {
+            background: #333;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .invoice__cell {
+            padding: 15px;
+            border-bottom: 1px solid #333;
+            text-align: left;
+        }
+
+        /* 3. MODIFIERS: The Variations (--double_dash) */
+        
+        /* A cell that is a price */
+        .invoice__cell--price {
+            text-align: right;
+            color: #4ade80; /* Matrix Green */
+            font-weight: bold;
+        }
+
+        /* A row that is the Total */
+        .invoice__row--total {
+            background: #222;
+            border-top: 2px solid #555;
+            color: white;
+            font-weight: 800;
+        }
+
+        /* Status Pills */
+        .status { padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; }
+        .status--paid { background: rgba(74, 222, 128, 0.2); color: #4ade80; }
+        .status--pending { background: rgba(251, 191, 36, 0.2); color: #fbbf24; }
+
+    </style>
+</head>
+<body>
+
+    <table class="invoice">
+        <thead>
+            <tr class="invoice__row">
+                <th class="invoice__cell invoice__head">ID</th>
+                <th class="invoice__cell invoice__head">Service</th>
+                <th class="invoice__cell invoice__head">Status</th>
+                <th class="invoice__cell invoice__head">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr class="invoice__row">
+                <td class="invoice__cell">#101</td>
+                <td class="invoice__cell">UI Design</td>
+                <td class="invoice__cell"><span class="status status--paid">Paid</span></td>
+                <td class="invoice__cell invoice__cell--price">$1,200.00</td>
+            </tr>
+
+            <tr class="invoice__row">
+                <td class="invoice__cell">#103</td>
+                <td class="invoice__cell">Consulting</td>
+                <td class="invoice__cell"><span class="status status--pending">Pending</span></td>
+                <td class="invoice__cell invoice__cell--price">$500.00</td>
+            </tr>
+
+            <tr class="invoice__row invoice__row--total">
+                <td class="invoice__cell" colspan="3">Total Revenue</td>
+                <td class="invoice__cell invoice__cell--price">$1,700.00</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</body>
+</html>
