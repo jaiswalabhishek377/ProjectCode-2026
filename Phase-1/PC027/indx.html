@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nike Product</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        :root {
+            --text-main: #111;
+            --text-muted: #757575;
+            --accent: #2563eb;
+            --bg-light: #f9fafb;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+        nav{
+            border: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 5%;
+            div{
+                display: flex;
+                align-items: center;
+                img{
+                    width: 30px;
+                    height: 30px;
+                    margin-right: 10px;
+                }
+            }
+            h2{
+                font-weight: 800;
+                font-size: 1.2rem;
+                font-weight: lighter;
+            }
+        }
+        .main-container{
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 5%;
+            gap: 50px;
+        }
+        main{
+        position: relative;
+            .mainimage{
+                img{
+                    width: 100%;
+                    aspect-ratio: 1 / 1;
+                    background: #eee;
+                    border-radius: 12px;
+                    object-fit: cover;
+                }
+            }
+            .gallery_grid{
+                display: flex;
+                justify-content: space-evenly;
+                /* display: grid;
+                grid-template-columns: repeat(4, 1fr); */
+                gap: 10px;
+                margin-top: 20px;
+            }
+            .productdetail{
+                margin-top: 30px;
+                font-size: 0.9rem;
+                color: var(--text-muted);
+            }
+            .product-image{
+                height: 600px;
+                width: 600px;
+                border-radius: 12px;
+                background: #eee;
+                object-fit: cover;
+            }
+        }
+
+       
+        aside{
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+            #cat{
+                font-style: italic;
+                color: var(--text-muted);
+                margin-bottom: 10px;
+                align-items: center;
+            }
+            p{
+                color: var(--text-muted);
+                margin-bottom: 20px;
+            }
+            h1{
+                font-size: 2rem;
+                margin-bottom: 10px;
+            }
+            h2{
+                font-size: 1.5rem;
+                font-weight: 600;
+                margin-bottom: 20px;
+            }
+            .options{
+                label{
+                    color: var(--text-muted);
+                    margin-bottom: 15px;
+                }
+                .size-grid{
+                    display: flex;
+                    gap: 10px;
+                    margin-bottom: 20px;
+                }
+                .size-btn{
+                    width: 40px;
+                    height: 40px;
+                    background: #eee;
+                    border-radius: 8px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    transition: 0.2s;
+                }
+                .size-btn.active{
+                    background-color: #111;
+                    color: white;
+                }
+                .size-btn:hover{
+                    background-color: #111;
+                    color: white;
+                }
+            }
+            .actionbar{
+                display: flex;
+                gap: 15px;
+                .addcart{
+                    height: 35px;
+                    width: 100%;
+                    background-color: #111;
+                    color: white;
+                    border-radius: 30px;
+                    padding: 10px 20px;
+                }
+                .wishlist{
+                    height: 30px;
+                    width: 40px;
+                    background-color: transparent;
+                    color: #111;
+                     /*  border in circle shape */
+                    border-radius: 50%;
+                    border: 1px solid #eee;
+                }
+            }
+        }
+        
+        @media (max-width: 900px) {
+            aside {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div>
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732229.png" alt="">
+            <p><i>Nike</i></p>
+        </div>
+        <h2>🛒 0</h2>
+    </nav>
+
+    <div class="main-container">
+        <main>
+            <div class="mainimage">
+                <img src="https://static.nike.com/a/images/t_web_pdp_936_v2/f_auto/01f63791-c733-4e2b-9df5-7cab44dba920/M+NIKE+COURT+LITE+4.png" alt="Mainproduct">
+            </div>
+            <div class="gallery_grid">
+                <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&q=80&w=200" class="gallery__thumb">
+                <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&q=80&w=200" class="gallery__thumb">
+                <img src="https://images.unsplash.com/photo-1605348532760-6753d2c43329?auto=format&fit=crop&q=80&w=200" class="gallery__thumb">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=200" class="gallery__thumb">
+            </div>
+            <div class="productdetail">
+                <p>
+                    The Nike Air Max 270 React merges the most artistic Air Max lineage with the softest, smoothest and most resilient foam. 
+                    <br><br>
+                    Designed for visual impact and cushioning, the Air unit provides a smooth ride. The lightweight, layered no-sew materials create a modern aesthetic.
+                </p>
+                <img src="https://assets.myntassets.com/dpr_1.5,q_30,w_400,c_limit,fl_progressive/assets/images/2025/DECEMBER/18/epOCS5Ch_1c30410398c34629ab30b058e0563318.jpg" class="product-image" alt="Productdetail">
+            </div>
+        </main>
+        <aside>
+            <p id="cat"><i>Shoes /Men's /Running</i></p>
+            <h1>Nike Air Max 77</h1>
+            <h2>$150.00</h2>
+            <p>Experience comfort and style with the Nike Air Max 77. Perfect for running and daily wear.</p>
+            <div class="options">
+                <span class="label">Select Size</span>
+                <div class="size-grid">
+                    <div class="size-btn">7</div>
+                    <div class="size-btn active">8</div>
+                    <div class="size-btn">9</div>
+                    <div class="size-btn">10</div>
+                    <div class="size-btn">11</div>
+                </div>
+            </div>
+            <div class="actionbar">
+                <button class="addcart">Add to Cart</button>
+                <button class="wishlist">♡</button>
+            </div>
+            <div style="margin-top: 30px; padding: 20px; background: #f9fafb; border-radius: 12px; font-size: 0.9rem;">
+                🚚 <strong>Free Delivery</strong><br>
+                <span style="color:#757575;">Enter your postal code for delivery availability</span>
+            </div>
+        </aside>
+    </div>
+</body>
+</html>
