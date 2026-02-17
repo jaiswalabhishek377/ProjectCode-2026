@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC028 DevBlog</title>
+   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,700;1,300&family=Inter:wght@400;600;800&display=swap');
+
+    :root {
+        --primary: #111;
+        --accent: #6366f1;
+        --bg: #fff;
+        --text: #4b5563;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        color: var(--primary);
+        background: #f9fafb;
+        line-height: 1.6;
+    }
+
+    nav {
+        border-bottom: 1px solid #e5e7eb;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 5%;
+    }
+
+    .logo { font-weight: 800; font-size: 1.5rem; }
+
+    /* --- 1. THE MAIN PAGE GRID --- */
+    .container {
+        display: grid;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 5%;
+        gap: 40px;
+        /* Mobile Default: 1 Column */
+        grid-template-columns: 1fr; 
+    }
+
+    /* --- 2. HERO SECTION --- */
+    .hero {
+        width: 100%; /* FIX: Changed from 70vw to 100% so it fits the grid */
+        background: #fff;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid #e5e7eb;
+        
+        display: grid;
+        grid-template-columns: 1fr; /* Stack on mobile */
+    }
+
+    .hero img {
+        width: 100%;
+        height: 300px; /* Fixed height for mobile */
+        object-fit: cover;
+    }
+
+    /* FIX: Corrected class name from .featured_content to .featured__content */
+    .featured__content {
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .tag { font-size: 0.8rem; color: var(--accent); font-weight: 700; margin-bottom: 10px; text-transform: uppercase; }
+    h2 { font-size: 1.8rem; margin-bottom: 15px; line-height: 1.2; font-family: 'Merriweather', serif; }
+    p { color: var(--text); margin-bottom: 20px; }
+    .read-more { color: var(--accent); font-weight: 600; text-decoration: none; }
+
+    /* --- 3. THE CARD GRID (Inside Main) --- */
+    main {
+        display: grid;
+        /* Auto-fit magic: Creates columns automatically */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+    }
+
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #e5e7eb;
+        transition: 0.3s;
+    }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+
+    .card__img { width: 100%; height: 200px; object-fit: cover; }
+    .card__body { padding: 25px; }
+    .card h3 { font-family: 'Merriweather', serif; font-size: 1.2rem; margin: 10px 0; }
+
+    /* --- 4. SIDEBAR --- */
+    aside {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .widget {
+        background: #fff;
+        padding: 25px;
+        border-radius: 12px;
+        border: 1px solid #e5e7eb;
+    }
+    .widget h4 { font-weight: 800; margin-bottom: 15px; font-size: 0.9rem; text-transform: uppercase; }
+    .widget ul { list-style: none; padding-left: 0; }
+    .widget li { margin-bottom: 10px; color: var(--text); cursor: pointer; }
+    
+    .newsletter input { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 6px; }
+
+    /* --- 5. DESKTOP LAYOUT (The Magic) --- */
+    @media (min-width: 900px) {
+        .container {
+            /* Create 2 columns: Content (2 parts) and Sidebar (1 part) */
+            grid-template-columns: 2fr 1fr; 
+            align-items: start;
+        }
+
+        .hero {
+            /* SPAN: Tell the hero to stretch across both columns */
+            grid-column: 1 / -1; 
+            
+            /* Make hero internal layout side-by-side */
+            grid-template-columns: 1.5fr 1fr;
+            height: 400px;
+        }
+
+        .hero img { height: 100%; }
+        
+        aside { position: sticky; top: 20px; }
+    }
+</style>
+</head>
+<body>
+    <nav>
+        <div class="logo">DEV.LOG</div>
+        <div style="font-weight: 600;">Subscribe</div>
+    </nav>
+    <div class="container">
+        <article class="hero">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1000" class="featured__img">
+            <div class="featured__content">
+                <div class="tag">Engineering</div>
+                <h2>Migrating from Redux to Zustand: A Complete Guide</h2>
+                <p>State management doesn't have to be complicated. Here is how we reduced our bundle size by 40%.</p>
+                <a href="#" class="read-more">Read Article →</a>
+            </div>
+        </article>
+
+        <main>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=400" class="card__img">
+                <div class="card__body">
+                    <div class="tag">React</div>
+                    <h3>Understanding Server Components</h3>
+                    <p style="font-size: 0.9rem;">Why the shift to the server is the future of frontend.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=400" class="card__img">
+                <div class="card__body">
+                    <div class="tag">CSS</div>
+                    <h3>CSS Grid vs Flexbox</h3>
+                    <p style="font-size: 0.9rem;">When to use which? The definitive cheat sheet.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=400" class="card__img">
+                <div class="card__body">
+                    <div class="tag">Career</div>
+                    <h3>Crushing the System Design Interview</h3>
+                    <p style="font-size: 0.9rem;">How to scale your architecture knowledge.</p>
+                </div>
+            </div>
+
+             <div class="card">
+                <img src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&q=80&w=400" class="card__img">
+                <div class="card__body">
+                    <div class="tag">Database</div>
+                    <h3>PostgreSQL vs MongoDB</h3>
+                    <p style="font-size: 0.9rem;">Choosing the right DB for your next SaaS.</p>
+                </div>
+            </div>
+        </main>
+        <aside>
+            <div class="widget newsletter">
+                <h4>Newsletter</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 15px;">Get the latest frontend tips delivered to your inbox.</p>
+                <input type="email" placeholder="Email address">
+                <button style="width: 100%; padding: 10px; background: #111; color: white; border-radius: 6px; cursor: pointer;">Subscribe</button>
+            </div>
+
+            <div class="widget">
+                <h4>Categories</h4>
+                <ul>
+                    <li>Frontend Development</li>
+                    <li>Backend Architecture</li>
+                    <li>DevOps & Cloud</li>
+                    <li>Career Advice</li>
+                </ul>
+            </div>
+        </aside>
+</body>
+</html>
