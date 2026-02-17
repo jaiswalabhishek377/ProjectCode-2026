@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC 28: Dev Blog</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,700;1,300&family=Inter:wght@400;600;800&display=swap');
+
+        :root {
+            --primary: #111;
+            --accent: #6366f1;
+            --bg: #fff;
+            --text: #4b5563;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--primary);
+            background: #f9fafb;
+            line-height: 1.6;
+        }
+
+        /* 1. HEADER */
+        header {
+            background: #fff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; }
+
+        /* 2. LAYOUT GRID */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 1fr; /* Mobile: 1 col */
+            gap: 40px;
+        }
+
+        /* 3. FEATURED POST (Hero) */
+        .featured {
+            grid-column: 1 / -1; /* Spans full width */
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+        }
+
+        .featured__img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .featured__content { padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+        
+        .tag {
+            font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+            color: var(--accent); letter-spacing: 1px; margin-bottom: 10px;
+        }
+
+        h2 { font-family: 'Merriweather', serif; font-size: 2rem; margin-bottom: 15px; line-height: 1.2; }
+        p { color: var(--text); margin-bottom: 20px; }
+        
+        .read-more { font-weight: 600; color: var(--primary); text-decoration: none; border-bottom: 2px solid var(--accent); }
+
+        /* 4. MAIN CONTENT vs SIDEBAR */
+        .content-wrapper {
+            display: grid;
+            gap: 40px;
+        }
+
+        /* The Article Grid */
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        
+        .card__img { width: 100%; height: 200px; object-fit: cover; }
+        .card__body { padding: 25px; }
+        .card h3 { font-family: 'Merriweather', serif; font-size: 1.2rem; margin: 10px 0; }
+
+        /* 5. SIDEBAR (Sticky) */
+        .sidebar {
+            display: flex; flex-direction: column; gap: 30px;
+        }
+
+        .widget {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+        }
+        .widget h4 { font-weight: 800; margin-bottom: 15px; font-size: 0.9rem; text-transform: uppercase; }
+        .widget ul { list-style: none; padding-left: 0; }
+        .widget li { margin-bottom: 10px; color: var(--text); cursor: pointer; transition: 0.2s; }
+        .widget li:hover { color: var(--accent); transform: translateX(5px); }
+
+        .newsletter input {
+            width: 100%; padding: 12px; border: 1px solid #e5e7eb; border-radius: 6px; margin-bottom: 10px;
+        }
+        .newsletter btn {
+            width: 100%; padding: 12px; background: var(--primary); color: #fff; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;
+        }
+
+        /* 6. DESKTOP MEDIA QUERY */
+        @media (min-width: 900px) {
+            .container {
+                /* Create a 12-column grid for precise control */
+                grid-template-columns: 2fr 1fr; /* Content gets 2/3, Sidebar gets 1/3 */
+                align-items: start; /* Prevents sidebar from stretching */
+            }
+
+            .featured {
+                grid-column: 1 / -1; /* Spans across content AND sidebar */
+                grid-template-columns: 1.5fr 1fr; /* Image takes more space */
+                height: 400px;
+            }
+
+            .featured__img { height: 100%; }
+
+            .sidebar {
+                position: sticky;
+                top: 20px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">DEV.LOG</div>
+        <div style="font-weight: 600;">Subscribe</div>
+    </header>
+
+    <div class="container">
+        
+        <article class="featured">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1000" class="featured__img">
+            <div class="featured__content">
+                <div class="tag">Engineering</div>
+                <h2>Migrating from Redux to Zustand: A Complete Guide</h2>
+                <p>State management doesn't have to be complicated. Here is how we reduced our bundle size by 40%.</p>
+                <a href="#" class="read-more">Read Article →</a>
+            </div>
+        </article>
+
+        <div class="article-grid">
+            
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=400" class="card__img">
+                <div class="card__body">
+                    <div class="tag">React</div>
+                    <h3>Understanding Server Components</h3>
+                    <p style="font-size: 0.9rem;">Why the shift to the server is the future of frontend.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=400" class="card__img">
+                <div class="card__body">
+                    <div class="tag">CSS</div>
+                    <h3>CSS Grid vs Flexbox</h3>
+                    <p style="font-size: 0.9rem;">When to use which? The definitive cheat sheet.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=400" class="card__img">
+                <div class="card__body">
+                    <div class="tag">Career</div>
+                    <h3>Crushing the System Design Interview</h3>
+                    <p style="font-size: 0.9rem;">How to scale your architecture knowledge.</p>
+                </div>
+            </div>
+
+             <div class="card">
+                <img src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&q=80&w=400" class="card__img">
+                <div class="card__body">
+                    <div class="tag">Database</div>
+                    <h3>PostgreSQL vs MongoDB</h3>
+                    <p style="font-size: 0.9rem;">Choosing the right DB for your next SaaS.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <aside class="sidebar">
+            <div class="widget newsletter">
+                <h4>Newsletter</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 15px;">Get the latest frontend tips delivered to your inbox.</p>
+                <input type="email" placeholder="Email address">
+                <button style="width: 100%; padding: 10px; background: #111; color: white; border-radius: 6px; cursor: pointer;">Subscribe</button>
+            </div>
+
+            <div class="widget">
+                <h4>Categories</h4>
+                <ul>
+                    <li>Frontend Development</li>
+                    <li>Backend Architecture</li>
+                    <li>DevOps & Cloud</li>
+                    <li>Career Advice</li>
+                </ul>
+            </div>
+        </aside>
+
+    </div>
+
+</body>
+</html>
