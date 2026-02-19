@@ -32,7 +32,8 @@ console.log(Boolean("0"));  // true or false?
 
 // 4.1)true
 // 4.2)true
-// 4.3)false
+// 4.3)true
+// JS only cares if the string is literally "" (empty). The value 0 is falsy, but the string "0" is truthy.
 
 
 // Notes:
