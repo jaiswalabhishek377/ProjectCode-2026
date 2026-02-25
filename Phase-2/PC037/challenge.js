@@ -17,6 +17,7 @@
 // copy.address.city = "LA";  // ✅ safe now — new object created
 // ```
 
+//The best practice is to create a new object and practice immutavility by spread operator and not mutating the original object. This way we can avoid unintended side effects and make our code more predictable and easier to debug.
 // Challenge 1 — Predict the output
 const person = { name: "Alex", pets: ["Dog", "Cat"] };
 const clone = { ...person }; // Shallow clone using spread operator
