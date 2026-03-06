@@ -247,3 +247,211 @@ function getGreeting() {
     );
 }
 document.getElementById('get-greeting-btn').addEventListener('click', getGreeting); // Attach event listener to get greeting button
+
+
+
+
+
+
+
+// Challenge 3 — Get Location and Display
+// ✅ CORRECTED: Now includes accuracy AND Google Maps link
+function getLocation() {
+  const locationResult = document.getElementById('location-result');
+  
+  if (!navigator.geolocation) {
+    locationResult.textContent = 'Geolocation is not supported by your browser.';
+    return;
+  }
+  
+  locationResult.textContent = 'Getting location...';
+  
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      const { latitude, longitude, accuracy } = position.coords;
+      
+      // ✅ Display all required info + Google Maps link
+      locationResult.innerHTML = `
+        <p><strong>Latitude:</strong> ${latitude.toFixed(6)}</p>
+        <p><strong>Longitude:</strong> ${longitude.toFixed(6)}</p>
+        <p><strong>Accuracy:</strong> ${accuracy.toFixed(2)} meters</p>
+        <a href="https://www.google.com/maps?q=${latitude},${longitude}" 
+           target="_blank" 
+           style="color: blue; text-decoration: underline;">
+          📍 View on Google Maps
+        </a>
+      `;
+    },
+    (error) => {
+      switch (error.code) {
+        case error.PERMISSION_DENIED:
+          locationResult.textContent = '❌ Location access denied.';
+          break;
+        case error.POSITION_UNAVAILABLE:
+          locationResult.textContent = '❌ Location information is unavailable.';
+          break;
+        case error.TIMEOUT:
+          locationResult.textContent = '❌ The request to get user location timed out.';
+          break;
+        default:
+          locationResult.textContent = '❌ An unknown error occurred.';
+          break;
+      }
+    }
+  );
+}
+
+document.getElementById('get-location-btn').addEventListener('click', getLocation);
+
+
+// Challenge 4 — Text-to-Speech with Controls
+// ✅ CORRECTED: Now includes speak/stop functionality + proper voice loading
+
+const voiceSelect = document.getElementById('voice-select');
+const speechText = document.getElementById('speech-text');
+const speakBtn = document.getElementById('speak-btn');
+const stopBtn = document.getElementById('stop-btn');
+const rateInput = document.getElementById('rate');
+const pitchInput = document.getElementById('pitch');
+
+// ✅ Populate voice list when voices are loaded
+function populateVoiceList() {
+  const voices = speechSynthesis.getVoices();
+  voiceSelect.innerHTML = '';
+  
+  voices.forEach((voice) => {
+    const option = document.createElement('option');
+    option.textContent = `${voice.name} (${voice.lang})`;
+    option.value = voice.name;
+    voiceSelect.appendChild(option);
+  });
+}
+
+// ✅ Voices load asynchronously, so wait for the event
+speechSynthesis.addEventListener('voiceschanged', populateVoiceList);
+// Also call immediately in case voices are already loaded
+populateVoiceList();
+
+// ✅ SPEAK FUNCTION (This was completely missing!)
+function speak() {
+  const text = speechText.value.trim();
+  
+  if (!text) {
+    alert('Please enter some text to speak');
+    return;
+  }
+  
+  // Cancel any ongoing speech first
+  speechSynthesis.cancel();
+  
+  const utterance = new SpeechSynthesisUtterance(text);
+  
+  // ✅ Apply selected voice
+  const voices = speechSynthesis.getVoices();
+  const selectedVoice = voices.find(v => v.name === voiceSelect.value);
+  if (selectedVoice) {
+    utterance.voice = selectedVoice;
+  }
+  
+  // ✅ Apply rate and pitch from sliders
+  utterance.rate = parseFloat(rateInput.value);
+  utterance.pitch = parseFloat(pitchInput.value);
+  
+  // Optional: Add event listeners for feedback
+  utterance.addEventListener('start', () => {
+    speakBtn.textContent = 'Speaking...';
+    speakBtn.disabled = true;
+  });
+  
+  utterance.addEventListener('end', () => {
+    speakBtn.textContent = 'Speak';
+    speakBtn.disabled = false;
+  });
+  
+  utterance.addEventListener('error', (error) => {
+    console.error('Speech error:', error);
+    speakBtn.textContent = 'Speak';
+    speakBtn.disabled = false;
+  });
+  
+  speechSynthesis.speak(utterance);
+}
+
+// ✅ STOP FUNCTION (This was also missing!)
+function stop() {
+  speechSynthesis.cancel();
+  speakBtn.textContent = 'Speak';
+  speakBtn.disabled = false;
+}
+
+// ✅ Attach event listeners
+speakBtn.addEventListener('click', speak);
+stopBtn.addEventListener('click', stop);
+
+// Challenge 6 — Reading Timer
+// ✅ CORRECTED: Now shows countdown until next announcement
+
+let timerInterval;
+let countdownInterval;
+let secondsRemaining = 10;
+
+// ✅ Add these elements to your HTML first:
+// <button id="start-timer-btn">Start Timer</button>
+// <button id="stop-timer-btn">Stop Timer</button>
+// <div id="timer-display"></div>
+
+function startReadingTimer() {
+  const timerDisplay = document.getElementById('timer-display');
+  
+  // Clear any existing timers
+  stopReadingTimer();
+  
+  // Reset countdown
+  secondsRemaining = 10;
+  
+  // Speak immediately when started
+  speakCurrentTime();
+  timerDisplay.textContent = 'Next announcement in 10 seconds';
+  
+  // ✅ Countdown timer (updates every second)
+  countdownInterval = setInterval(() => {
+    secondsRemaining--;
+    
+    if (secondsRemaining > 0) {
+      timerDisplay.textContent = `Next announcement in ${secondsRemaining} second${secondsRemaining === 1 ? '' : 's'}`;
+    }
+  }, 1000);
+  
+  // ✅ Main timer (speaks every 10 seconds)
+  timerInterval = setInterval(() => {
+    speakCurrentTime();
+    secondsRemaining = 10; // Reset countdown
+  }, 10000);
+}
+
+function speakCurrentTime() {
+  const now = new Date();
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+  const seconds = now.getSeconds();
+  
+  // Format time nicely for speech
+  const timeString = `${hours}:${minutes.toString().padStart(2, '0')}`;
+  const utterance = new SpeechSynthesisUtterance(`The current time is ${timeString}`);
+  speechSynthesis.speak(utterance);
+}
+
+function stopReadingTimer() {
+  clearInterval(timerInterval);
+  clearInterval(countdownInterval);
+  
+  const timerDisplay = document.getElementById('timer-display');
+  timerDisplay.textContent = 'Timer stopped.';
+  
+  timerInterval = null;
+  countdownInterval = null;
+}
+
+// ✅ Attach event listeners
+document.getElementById('start-timer-btn').addEventListener('click', startReadingTimer);
+document.getElementById('stop-timer-btn').addEventListener('click', stopReadingTimer);
