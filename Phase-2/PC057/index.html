@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+    .container {
+      margin: 30px 0;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    .card {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+    }
+    .error {
+      color: red;
+      background: #fee;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .loading {
+      color: #666;
+      font-style: italic;
+    }
+    .pagination-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    #current-page {
+      min-width: 80px;
+      text-align: center;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <h1>Fetch API Challenges</h1>
+  
+  <!-- Challenge 1 -->
+  <div class="container">
+    <h2>Challenge 1: Fetch Single User</h2>
+    <button id="fetch-user-btn">Fetch User</button>
+    <div id="loading" class="loading" style="display: none;">Loading user...</div>
+    <div id="user-info"></div>
+  </div>
+  
+  <!-- Challenge 2 -->
+  <div class="container">
+    <h2>Challenge 2: Fetch All Posts</h2>
+    <button id="fetch-posts-btn">Fetch Posts</button>
+    <div id="posts-loading" class="loading" style="display: none;">Loading posts...</div>
+    <div id="posts-list"></div>
+  </div>
+  
+  <!-- Challenge 3 -->
+  <div class="container">
+    <h2>Challenge 3: Random Dog Image</h2>
+    <button id="fetch-dog-btn">Get Random Dog</button>
+    <div id="dog-loading" class="loading" style="display: none;">Loading dog image...</div>
+    <img id="dog-image" alt="Random dog" style="max-width: 300px; display: block; margin-top: 10px;" />
+  </div>
+  
+  <!-- Challenge 4 -->
+  <div class="container">
+    <h2>Challenge 4: GitHub User Search</h2>
+    <input type="text" id="github-username" placeholder="Enter GitHub username">
+    <button id="search-github-btn">Search</button>
+    <div id="github-loading" class="loading" style="display: none;">Loading GitHub user...</div>
+    <div id="github-user-info"></div>
+  </div>
+  
+  <!-- Challenge 5 -->
+  <div class="container">
+    <h2>Challenge 5: Pokémon Info</h2>
+    <input type="text" id="pokemon-name" placeholder="Enter Pokémon name">
+    <button id="fetch-pokemon-btn">Fetch</button>
+    <div id="pokemon-loading" class="loading" style="display: none;">Loading Pokemon...</div>
+    <div id="pokemon-info"></div>
+  </div>
+
+  <!-- Challenge 6 -->
+  <div class="container">
+    <h2>Challenge 6: Fetch Multiple Users in Parallel</h2>
+    <button id="fetch-multiple-users-btn">Fetch Users 1, 2, 3</button>
+    <div id="multi-users-info"></div>
+  </div>
+
+  <!-- Challenge 7 -->
+  <div class="container">
+    <h2>Challenge 7: Posts with Pagination</h2>
+    <div id="pagination-loading" class="loading" style="display: none;">Loading page...</div>
+    <div id="pagination-posts"></div>
+    <div class="pagination-controls">
+      <button id="prev-page-btn">Previous Page</button>
+      <div id="current-page">Page 1</div>
+      <button id="next-page-btn">Next Page</button>
+    </div>
+  </div>
+  
+  <script src="challenge.js"></script>
+</body>
+</html>
