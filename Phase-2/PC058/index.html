@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: Arial; max-width: 800px; margin: 20px auto; padding: 20px; }
+    .container { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+    input, textarea { display: block; width: 100%; margin: 10px 0; padding: 8px; box-sizing: border-box; }
+    button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+    .item { border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 5px; }
+    .success { color: green; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+  <h1>Fetch API - Write Operations</h1>
+  
+  <div class="container">
+    <h2>Challenge 1: Create Post</h2>
+    <input type="text" id="post-title" placeholder="Post title">
+    <textarea id="post-body" placeholder="Post body" rows="3"></textarea>
+    <button id="create-post-btn">Create Post</button>
+    <div id="create-result"></div>
+  </div>
+  
+  <div class="container">
+    <h2>Challenge 2: Update Post Title</h2>
+    <input type="number" id="update-post-id" placeholder="Post ID">
+    <input type="text" id="new-title" placeholder="New title">
+    <button id="update-btn">Update Post</button>
+    <div id="update-result"></div>
+  </div>
+  
+  <div class="container">
+    <h2>Challenge 3: Delete Post</h2>
+    <input type="number" id="delete-post-id" placeholder="Post ID">
+    <button id="delete-btn">Delete Post</button>
+    <div id="delete-result"></div>
+  </div>
+  
+  <div class="container">
+    <h2>Challenge 4: Todo List (Full CRUD)</h2>
+    <input type="text" id="todo-input" placeholder="New todo">
+    <button id="add-todo-btn">Add Todo</button>
+    <div id="todos"></div>
+  </div>
+
+  <div class="container">
+    <h2>Challenge 5: Create User with Validation</h2>
+    <input type="text" id="user-name" placeholder="Name (min 3 chars)">
+    <input type="email" id="user-email" placeholder="Email">
+    <button id="create-user-btn">Create User</button>
+    <div id="create-user-result"></div>
+  </div>
+
+  <div class="container">
+    <h2>Challenge 6: Batch Delete</h2>
+    <input type="text" id="batch-ids" placeholder="Comma-separated IDs, e.g. 1,2,3">
+    <button id="batch-delete-btn">Batch Delete</button>
+    <div id="batch-result"></div>
+  </div>
+
+  <div class="container">
+    <h2>Challenge 7: Optimistic Update</h2>
+    <input type="number" id="optimistic-post-id" placeholder="Post ID" value="1">
+    <input type="text" id="optimistic-title" placeholder="New title">
+    <button id="setup-optimistic-btn">Setup Demo Post</button>
+    <button id="optimistic-update-btn">Update Title</button>
+    <div id="optimistic-result"></div>
+    <div id="optimistic-demo"></div>
+  </div>
+  
+  <script src="challenge.js"></script>
+</body>
+</html>
