@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.9);
+}
+.container{
+    background: linear-gradient(135deg, #00feba, #5b548a);
+    opacity: 0.8;
+    color:aliceblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 20px;
+    .inpsearch{
+        display: flex;
+        margin-bottom: 20px;
+        gap: 20px;
+        justify-content: space-between;
+        input{
+            padding: 10px;
+            width: 200px;
+            border: none;
+            border-radius: 5px;
+        }
+        button{
+            border: none;
+            width: 30px;
+            border-radius: 5px;
+        }
+        img{
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+}
+.error{    
+    color: whitesmoke;
+    font-size: 14px;
+    text-align: left;
+    margin-bottom: 10px;
+    display: none;
+}
+.center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    h1:nth-child(odd){
+        margin-bottom: 20px;
+        font-weight: 400;
+    }
+}
+.twofeature{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 100px;
+    .humidity{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .wind{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    img{
+        width: 50px;
+        height: 50px;
+    }
+}
