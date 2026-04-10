@@ -30,14 +30,14 @@ body{
         justify-content: space-between;
         input{
             padding: 10px;
-            width: 200px;
+            width: 250px;
             border: none;
-            border-radius: 5px;
+            border-radius: 7px;
         }
         button{
             border: none;
             width: 30px;
-            border-radius: 5px;
+            border-radius: 7px;
         }
         img{
             width: 20px;
@@ -58,6 +58,9 @@ body{
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    h1{
+        font-weight: 400;
+    }
     h1:nth-child(odd){
         margin-bottom: 20px;
         font-weight: 400;

@@ -1,15 +1,15 @@
-const apikey="c3482bfde08ed11b19baa381a65d0014";
 const searchbox=document.querySelector(".inpsearch input")
 const searchbtn=document.querySelector(".inpsearch button")
 const url="https://api.openweathermap.org/data/2.5/weather?q=";
 const centerimg=document.querySelector(".centerimg");
 const error=document.querySelector(".error");
 const weathercontainer=document.querySelector(".weathercontainer");
+const apikey="c3482bfde08ed11b19baa381a65d0014";
 async function getWeather(city){
     const response=await fetch(url + city + `&appid=${apikey}`);
     var data=await response.json()
     //console.log(data)
-    if(data.cod=="404"){
+    if(data.cod=="404" ||city==""){
             error.style.display="block";
             weathercontainer.style.display="none";
             return;
@@ -39,6 +39,6 @@ async function getWeather(city){
     }
 }
 searchbtn.addEventListener("click", () => {
-    getWeather(searchbox.value);
+    getWeather(searchbox.value.trim());
 });
 getWeather("Bengaluru");
