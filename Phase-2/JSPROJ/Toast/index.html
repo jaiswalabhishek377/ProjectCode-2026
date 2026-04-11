@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="buttons">
+    <button onclick="showToast(succesmsg)">Show Success</button>
+    <button onclick="showToast(errormsg)">Show Error</button>
+    <button onclick="showToast(warningmsg)">Show Warning</button>
+    <!-- <button onclick="showToast('info', 'A new software update is available.')">Show Info</button> -->
+    </div>
+    <div id="toastBox"></div>
+
+<script>
+    let toastBox = document.querySelector('#toastBox');
+    let succesmsg=" ✅Great! Your action was successful.";
+    let errormsg=" ❌Oops! Something went wrong. Please try again.";
+    let warningmsg=" ⚠️ Warning! Please check your input.";
+    let toast= document.querySelector('.toast');
+    function showToast(message){
+        let toast= document.createElement('div');
+        toast.classList.add('toast');
+        if(message===succesmsg){
+            toast.classList.add('success');
+        }else if(message===errormsg){
+            toast.classList.add('error');
+        }else if(message===warningmsg){
+            toast.classList.add('warning');
+        }
+        toast.innerText = message;
+        toastBox.appendChild(toast);
+        setTimeout(() => {
+            toast.remove();
+        }, 3000);
+    }
+</script>
+</body>
+</html>
