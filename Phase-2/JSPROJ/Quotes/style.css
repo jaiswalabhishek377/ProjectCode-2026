@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Playfair Display, serif;
+}
+body{
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.container{
+    border:1px solid wheat;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 600px;
+    height:auto;
+    border-radius: 10px;
+    text-align: center;
+    h2::after{
+        content: "";
+        border-bottom: 2px solid #ccc;
+        width: 50px;
+        margin: 0 auto;
+        display: block;
+        font-size: 40px;
+        color: #ccc;
+        margin-bottom: 20px;
+    }
+    #quote{
+        font-style: italic;
+        font-weight: 400;
+        font-size: 1.5rem;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        white-space: pre-wrap; 
+        /* word-break: break-all; */
+    }
+    #quote::before{
+        content: "“";
+        font-size: 40px;
+        color: #ccc;
+        margin-right: 10px;
+    }
+    #quote::after{
+        content: "”";
+        font-size: 40px;
+        color: #ccc;
+        margin-left: 10px;
+    }
+    #author{
+        margin-top: 15px;
+        float: right;
+    }
+}
+#buttons{
+    margin-top: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:15px;
+    img{
+        height: 20px;
+        margin-right: 5px;
+    }
+    button{
+        font-family: Poppins, Helvetica, sans-serif;
+        padding: 5px;
+        width: 120px;
+        height: 35px;
+        border: 2px solid lightblue;
+        border-radius: 20px;
+        background-color: whitesmoke;
+        cursor: pointer;
+    }
+    #Newquote{
+        background-color: rgb(33, 133, 196);
+        color: white;
+    }
+}
