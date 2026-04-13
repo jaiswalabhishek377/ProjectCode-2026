@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <p>Music Player</p>
+        <img src="superman.jpeg" alt="artist">
+        <h3>Flight</h3>
+        <h5>Hans Zimmer</h5>
+        <audio id="audio">
+            <source src="man_of_steel_flight.mp3" type="audio/mpeg">
+        </audio>
+        <input type="range" name="progress" id="progress" value="0" min="0" max="100">
+        <div id="time"><span id="current">0:00</span> / <span id="duration">0:27</span></div>
+        <div id="controls">
+            <button id="prev">⏮️</button>
+            <button id="play" onclick="playpause()">▶</button>
+            <button id="next">⏭️</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
