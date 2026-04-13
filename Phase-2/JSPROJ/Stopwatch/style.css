@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.stopwatch{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),url(superman.jpeg);
+    background-size: cover;
+    background-position: center;
+    color: white;
+    font-weight: 200;
+    h1{
+        margin-bottom: 40px;
+    }
+}
+.buttons{
+    button{
+        margin-top: 20px;
+        background-color:transparent;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin: 0 10px;
+        cursor: pointer;
+        &:hover{
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    }
+}
