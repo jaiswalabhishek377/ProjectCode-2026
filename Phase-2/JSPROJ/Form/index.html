@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <img src="moon.png" alt="dark" id="bg-change">
+    <div class="container">
+        <form id="contactForm" novalidate>
+            <p>✈️</p>
+            <div class="input-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                <span class="error-message" id="nameError"></span>
+            </div>
+            <div class="input-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <span class="error-message" id="emailError"></span>
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <img src="eye-close.png" id="eye" alt="toggle password">
+                <span class="error-message" id="passwordError"></span>
+            </div>
+            <div class="input-group">
+                <label for="message">Your Message:</label>
+                <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+                <span class="error-message" id="messageError"></span>
+            </div>
+            <button type="submit">Submit</button>
+            <span class="success-message" id="successMessage"></span>
+        </form>
+    </div>
+    <div id="footer">
+        <p>We're Coming Soon!</p>
+        <div class="launchtime">
+            <div>
+                <p id="days">00</p>
+                <span>Days</span>
+            </div>
+            <div>
+                <p id="hours">00</p>
+                <span>Hours</span>
+            </div>
+            <div>
+                <p id="minutes">00</p>
+                <span>Minutes</span>
+            </div>
+            <div>
+                <p id="seconds">00</p>
+                <span>Seconds</span>
+            </div>
+        </div>
+    </div>
+    <img src="rocket.png" alt="rocket" id="rocket">
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins, sans-serif;
+}
+:root{
+    --primary-color: #aed8ea;
+    --secondary-color: #f2f2f2;
+    
+}
+.dark-mode{
+    --primary-color: #f2f0f8;
+    --secondary-color: #040713;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--secondary-color);
+    height: 100vh;
+}
+.container{
+    width: 500px;
+    background: var(--primary-color);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    p{
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+form input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-left: 45px;
+    border-bottom: #acc5e1 2px solid;
+    outline: none;
+}
+#password{
+    margin-left: 15px;
+}
+img{
+        height: 20px;
+        width: 20px;
+    }
+form textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: none;
+    border-bottom: var(--primary-color) 2px solid;
+    resize: vertical;
+    width: 100%;
+    height: 100px;
+    outline: none;
+}
+.error-message {
+    display: none;
+    color: #d32f2f;
+    font-size: 12px;
+    margin-top: -12px;
+    margin-bottom: 10px;
+    margin-left: 45px;
+}
+.error-message.show {
+    display: block;
+}
+input.error,
+textarea.error {
+    border-bottom-color: #d32f2f !important;
+    background-color: rgba(211, 47, 47, 0.05);
+}
+.success-message {
+    display: none;
+    color: #4caf50;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: rgba(76, 175, 80, 0.1);
+    border-radius: 5px;
+}
+.success-message.show {
+    display: block;
+}
+form button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    cursor: pointer;
+    margin: 0 auto;
+    width: 100px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+form button:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+form button:active {
+    transform: scale(0.98);
+}
+#bg-change{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+#footer{
+    position: absolute;
+    bottom: 40px;
+    display: block;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    font-size: 14px;
+    color: var(--primary-color);
+}
+.launchtime{
+    width: 200px;
+    margin: 0 auto;
+    display: flex;
+    background-color: rgb(104, 42, 42);
+    justify-content: center;
+    align-items: center;
+}
+#rocket{
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    bottom: 0;
+    right: 10%;
+    animation: rocket 4s linear infinite;
+}
+@keyframes rocket{
+    0%{
+        bottom: 0;
+        opacity: 0;
+    }
+    100%{
+        bottom: 100%;
+        opacity: 1;
+    }
+}
