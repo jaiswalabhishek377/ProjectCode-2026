@@ -26,10 +26,10 @@ const App = () => {
   },[])
 
   return (
-    <div className="min-h-screen flex flex-wrap content-between bg-gray-400">
-      <div className="w-full block">
+    <div className="">
+      <div className="container">
         <Header />
-        <main className="flex justify-center items-center py-4">
+        <main className="">
           {loading ? <p>Loading...</p> : <p>Data Loaded</p>}
         </main>
         <Footer />
