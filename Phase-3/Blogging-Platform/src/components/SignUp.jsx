@@ -4,11 +4,11 @@ import {Link, useNavigate} from "react-router-dom"
 import { login } from '../store/authslice'
 import {useForm} from "react-hook-form"
 import {useDispatch} from "react-redux"
-import {Input} from "./Input"
-import {Button} from "./Button"
+import Input from './Input'
+import Button from './Button'
 import Logo from "./logo"
 
-function SignUp() {
+function SignUpp() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const {register, handleSubmit} = useForm()
@@ -87,4 +87,4 @@ function SignUp() {
   )
 }
 
-export default SignUp
+export default SignUpp

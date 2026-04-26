@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {login as authLogin } from "../store/authslice"
-import {Button} from "../components/Button"
-import {Input} from "../components/Input"
-import {Select} from "../components/Select"
-import Logo from "../components/logo"
+import Button from "./Button"
+import Input from "./Input"
+import Select from './Select'
+import Logo from "./Logo"
 import {useDispatch} from "react-redux"
-import AuthService from "../appwrite/auth"
+import service from "../appwrite/auth"
 import {useForm} from "react-hook-form"
 
 function Login() {
@@ -18,9 +18,9 @@ function Login() {
     const login = async(data) =>{
         setError("")
         try {
-            const session = await AuthService.login(data)
+            const session = await service.login(data)
             if(session){
-                const userdata = await AuthService.getCurrentUser()
+                const userdata = await service.getCurrentUser()
                 if(userdata){
                     dispatch(authLogin(userdata))
                     navigate("/")
