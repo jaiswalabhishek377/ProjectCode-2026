@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import AuthService from "./appwrite/auth"
 import {login,logout} from "./store/authslice.js"
+import { Outlet } from "react-router-dom"
 
 const App = () => {
   
@@ -14,7 +15,7 @@ const App = () => {
     AuthService.getCurrentUser()
     .then((userData) => {
       if(userData) {
-        dispatch(login({userData}));
+        dispatch(login(userData));
       }
       else{
         dispatch(logout());
@@ -26,14 +27,18 @@ const App = () => {
   },[])
 
   return (
-    <div className="">
-      <div className="container">
+    <div className="min-h-screen flex flex-col bg-slate-50">
         <Header />
-        <main className="">
-          {loading ? <p>Loading...</p> : <p>Data Loaded</p>}
+        <main className="flex-grow flex flex-col w-full min-h-[70vh]">
+          {loading ? (
+             <div className="flex flex-grow justify-center items-center">
+                <div className="w-10 h-10 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+             </div>
+          ) : (
+            <Outlet />
+          )}
         </main>
         <Footer />
-      </div>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import Container from '../Container/container'
-import Logo from '../logo'
+import Logo from '../Logo'
 import LogoutBtn from './LogoutBtn'
 import {Link} from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
@@ -40,24 +40,24 @@ const Header = () => {
   ]
 
   return (
-    <header className='py-3 shadow bg-gray-500'>
+    <header className='py-4 shadow-md bg-white border-b border-gray-200'>
       <Container >
-        <nav className='flex'>
+        <nav className='flex items-center justify-between'>
           <div className='mr-4'>
             <Link to="/">
-              <Logo width="120px" />
+              <Logo width="70px" />
             </Link>
-            <ul className='flex ml-auto'>
+          </div>
+          <ul className='flex items-center ml-auto gap-4 sm:gap-6'>
               {
                 navItems.map((item)=>
                   item.active ? <li key={item.name}>
-                    <button onClick={()=>navigate(item.slug)} className='inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'>
+                    <button onClick={()=>navigate(item.slug)} className='inline-block px-4 py-2 duration-200 text-gray-700 font-semibold hover:bg-blue-100 hover:text-blue-600 rounded-full'>
                       {item.name}</button>
                   </li> : null
                 )}
-                {authStatus && <LogoutBtn />}
+                {authStatus && <li><LogoutBtn /></li>}
             </ul>
-          </div>
         </nav>
       </Container>
     </header>

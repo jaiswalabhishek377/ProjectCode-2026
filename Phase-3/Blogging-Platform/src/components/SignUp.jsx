@@ -6,7 +6,7 @@ import {useForm} from "react-hook-form"
 import {useDispatch} from "react-redux"
 import Input from './Input'
 import Button from './Button'
-import Logo from "./logo"
+import Logo from "./Logo"
 
 function SignUpp() {
     const navigate = useNavigate()

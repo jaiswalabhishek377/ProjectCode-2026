@@ -18,10 +18,9 @@ export class Service{
             return await this.databases.createDocument(
                 config.appwriteDatabaseId, 
                 config.appwriteCollectionId, 
-                ID.unique(), 
+                slug, 
                 {
                     title,
-                    slug,
                     content,
                     featuredimgid,
                     status,
@@ -34,7 +33,7 @@ export class Service{
         }
     }
 
-    async updatePost({postId,title,slug,content,featuredimgid,status}) {
+    async updatePost(postId, {title,content,featuredimgid,status}) {
         try {
             return await this.databases.updateDocument(
                 config.appwriteDatabaseId,
@@ -42,7 +41,6 @@ export class Service{
                 postId,
                 {
                     title,
-                    slug,
                     content,
                     featuredimgid,
                     status,
@@ -61,9 +59,11 @@ export class Service{
                 config.appwriteCollectionId,
                 postId,
             );
+            return true;
         }
         catch(error) {
             console.log("Appwrite error",error);
+            return false;
         }
     }
 
@@ -80,7 +80,7 @@ export class Service{
         }
     }
 
-    async getPosts(queries = [Query.equal("status","active")]) {
+    async getPosts(queries = [Query.equal("status", true)]) {
         try {
             return await this.databases.listDocuments(
                 config.appwriteDatabaseId,
@@ -113,21 +113,22 @@ export class Service{
                 config.appwriteBucketId,
                 fileId,
             );
+            return true;
         }
         catch(error) {
             console.log("Appwrite error",error);
+            return false;
         }
     }
 
-    async getFilePreview(fileId) {
+    getFilePreview(fileId) {
+        if (!fileId) return "";
         try {
-            return this.storage.getFilePreview(
-                config.appwriteBucketId,
-                fileId,
-            );
-        }
-        catch(error) {
-            console.log("Appwrite error",error);
+            // Constructing the URL directly based on the working example the user provided
+            return `${config.appwriteUrl}/storage/buckets/${config.appwriteBucketId}/files/${fileId}/view?project=${config.appwriteProjectId}&mode=admin`;
+        } catch (error) {
+            console.log(error);
+            return "";
         }
     }
 }

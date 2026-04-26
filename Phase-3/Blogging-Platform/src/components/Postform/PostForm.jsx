@@ -17,23 +17,25 @@ function PostForm({post}) {
         defaultValues : {
             title : post?.title || "",
             content : post?.content || "",
-            slug: post?.slug || "",
-            status: post?.status || "active",
+            slug: post?.$id || "",
+            status: post ? (post.status ? "active" : "inactive") : "active",
             // featuredImage : post?.featuredImage || "",
             // category : post?.category || ""
         },
     })
     const navigate = useNavigate()
-    const userData = useSelector((state) => state.user.userData)
+    const userData = useSelector((state) => state.auth.userData)
     const submit = async (data) => {
+       const mappedStatus = data.status === "active";
        if(post){
-        const file = data.image[0] ? service.uploadFile(data.image[0]) : null
+        const file = data.image[0] ? await service.uploadFile(data.image[0]) : null
 
         if(file){
-            service.deleteFile(post.featuredImage)
+            service.deleteFile(post.featuredimgid || post.featuredImage)
         }
         const dbPost = await service.updatePost(post.$id,{
             ...data,
+            status: mappedStatus,
             featuredimgid : file ? file.$id : undefined,
         })
         if(dbPost){
@@ -43,9 +45,10 @@ function PostForm({post}) {
             const file = data.image[0] ? await service.uploadFile(data.image[0]) : null
             if(file){
                 const fileId= file.$id
-                data.featuredimgid = fileId
                 const dbPost = await service.createPost({
                     ...data,
+                    status: mappedStatus,
+                    featuredimgid: fileId,
                     userid : userData.$id,
                 })
                 if(dbPost){
@@ -88,6 +91,7 @@ function PostForm({post}) {
                 placeholder="Slug"
                 className="mb-4"
                 {...register("slug", { required: true })}
+                disabled={!!post} // Disable changing slug for existing posts (Appwrite doesn't allow renaming Document IDs)
                 onInput={(e) => {
                     setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
                 }}
@@ -105,7 +109,7 @@ function PostForm({post}) {
             {post && (
                 <div className="w-full mb-4">
                     <img
-                        src={service.getFilePreview(post.featuredImage)}
+                        src={service.getFilePreview(post.featuredimgid || post.featuredImage)}
                         alt={post.title}
                         className="rounded-lg"
                     />

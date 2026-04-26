@@ -12,7 +12,7 @@ function EditPost() {
 
     useEffect(() => {
         if(slug){
-            service.getPostBySlug(slug).then((post) => {
+            service.getPost(slug).then((post) => {
                 if(post){
                     setPost(post)
                 }else{

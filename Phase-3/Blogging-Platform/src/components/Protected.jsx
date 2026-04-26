@@ -9,10 +9,10 @@ function Protected({children,authentication=true}){
     const authStatus = useSelector(state => state.auth.status)
 
     useEffect(()=>{
-        if(authentication && authStatus !== "authentication" ){ //when authStatus is false redirect to login page
+        if(authentication && authStatus !== authentication ){ //when authStatus is false redirect to login page
             navigate("/login")
         }
-        else if( !authentication && authStatus !== "authentication"){
+        else if( !authentication && authStatus !== authentication){
             navigate("/")
         }
     setLoader(false)
