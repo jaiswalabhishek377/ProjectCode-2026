@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+:root{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Outfit', sans-serif;
+}
+
+.click{
+  background-color: rgb(23, 150, 223);
+  outline: none;
+  border: none;
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+.btn{
+  height: 30px;
+  width: 100px;
+  margin: 10px;
+}
