@@ -1,14 +1,72 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
-:root{
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Outfit', sans-serif;
 }
 .App{
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; */
+  
+}
+.content{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+.auth-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 400px;
+  border: 1px solid orange;
+  background-color: rgba(245, 101, 5, 0.1);
+}
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+input{
+  padding: 0.5rem 1rem;
+  border: none;
+  outline: none;
+  border-radius: 7px;
+}
+button{
+  padding: 0.5rem 1rem;
+  border: none;
+  outline: none;
+  border-radius: 7px;
+  color: tomato;
+  background-color: rgba(245, 101, 5, 0.1);
+  cursor: pointer;
+}
+
+#logo{
+  width: 100px;
+  height: auto;
+  object-fit: cover;
+}
+
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  ul{
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+  }
 }
