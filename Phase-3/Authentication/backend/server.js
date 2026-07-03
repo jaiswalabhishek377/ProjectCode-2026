@@ -1,8 +1,11 @@
+import dotenv from 'dotenv'
+dotenv.config()
+
 import express from 'express'
 import cors from 'cors'
 import router from './Routes/authRoutes.js'
 import dashRouter from './Routes/dashboardRoute.js'
-
+import { connectDB } from './Config/db.js'
 const app = express()
 
 app.use(express.json()) // Parse JSON bodies from incoming requests
@@ -12,6 +15,8 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
+// db connection
+connectDB();
 
 app.get('/api/health', (req, res) => {
     res.send("Server is healthy")

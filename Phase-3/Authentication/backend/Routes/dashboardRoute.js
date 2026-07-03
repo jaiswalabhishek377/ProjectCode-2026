@@ -1,8 +1,8 @@
 import {Router} from "express"
 import authMiddleware from "../Middleware/auth.js";
+import getUserInfo from "../Controllers/dashboardController.js";
 const dashRouter= Router();
 
-
-dashRouter.post("/dash",authMiddleware);
+dashRouter.get("/me",authMiddleware,getUserInfo);
 
 export default dashRouter;

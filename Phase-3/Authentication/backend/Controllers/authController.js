@@ -22,7 +22,7 @@ const register = async(req,res)=>{
         }
 
         const salt= await bcrypt.genSalt(10)
-        const hashedpassword=bcrypt.hash(password,salt)
+        const hashedpassword= await bcrypt.hash(password,salt)
         const newUser= new User({
             name:name,
             email:email,
