@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import {Routes,Route} from 'react-router-dom'
 import Dashboard from './pages/Dashboard'
 import Landing from './pages/Landing'
+import Services from './pages/Services'
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route path='/' element={<Landing/>}/>
           <Route path='/auth' element={<AuthPage/>}/>
           <Route path='/dashboard' element={<Dashboard/>}/>
+          <Route path='/services' element={<Services/>}/>
           <Route path='*' element={<h1>404 Not Found</h1>}/>
         </Routes>
       </div>
