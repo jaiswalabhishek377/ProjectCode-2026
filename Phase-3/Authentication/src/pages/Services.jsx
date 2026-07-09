@@ -4,7 +4,7 @@ const Services = () => {
   return (
     <div>
         These are the services we offer:
-         <p>Dominatorae</p>
+         <p>Dominatorae Dominatorae</p>
     </div>
    
   )
