@@ -12,7 +12,7 @@ const getUserInfo = async (req,res)=>{
         if(!user){
             return res.status(404).json({success:false,message:"User not found"});
         }
-        res.json({
+        res.json({ //send response json to frontend so it can display!
             success:true,
             name:user.name,
             email:user.email,
