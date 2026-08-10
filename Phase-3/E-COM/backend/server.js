@@ -6,6 +6,7 @@ import cors from "cors";
 import authRoutes from "./routes/auth.js";
 import productRoutes from "./routes/productRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
+import couponRoutes from "./routes/couponRoutes.js";
 import { connectDB } from "./config/db.js";
 
 dotenv.config();
@@ -30,6 +31,7 @@ app.get("/api/health", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
+app.use("/api/coupons", couponRoutes);
 
 // Database Connection & Server Listen
 app.listen(PORT, () => {
