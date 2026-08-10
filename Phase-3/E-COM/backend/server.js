@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 
 import authRoutes from "./routes/auth.js";
+import productRoutes from "./routes/productRoutes.js";
 import { connectDB } from "./config/db.js";
 
 dotenv.config();
@@ -26,6 +27,7 @@ app.get("/api/health", (req, res) => {
 
 // API Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/products", productRoutes);
 
 // Database Connection & Server Listen
 app.listen(PORT, () => {
