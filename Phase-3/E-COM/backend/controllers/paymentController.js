@@ -3,7 +3,7 @@ import Order from "../models/orderModel.js";
 import Product from "../models/productModel.js";
 import { stripe } from "../lib/stripe.js";
 
-// Helper: Create a 10% discount reward coupon for purchases over $200
+// Helper: Create a 10% discount reward coupon for purchases over ₹5,000
 async function createNewCoupon(userId) {
     await Coupon.findOneAndDelete({ userId });
 
@@ -18,7 +18,7 @@ async function createNewCoupon(userId) {
     return newCoupon;
 }
 
-// @desc    Create Stripe Checkout Session with dynamic prices & coupons
+// @desc    Create Stripe Checkout Session in INR (Indian Rupees) with delivery charges & coupons
 // @route   POST /api/payments/create-checkout-session
 // @access  Private
 export const createCheckoutSession = async (req, res) => {
@@ -29,7 +29,7 @@ export const createCheckoutSession = async (req, res) => {
             return res.status(400).json({ error: "Invalid or empty products array" });
         }
 
-        let totalAmount = 0;
+        let totalAmount = 0; // Total amount in paise (1 INR = 100 Paise)
 
         // Fetch verified product prices server-side from MongoDB
         const lineItems = await Promise.all(
@@ -39,12 +39,12 @@ export const createCheckoutSession = async (req, res) => {
                     throw new Error(`Product not found: ${item._id}`);
                 }
 
-                const amount = Math.round(product.price * 100); // Convert dollars to cents
+                const amount = Math.round(product.price * 100); // Convert Rupees to Paise
                 totalAmount += amount * item.quantity;
 
                 return {
                     price_data: {
-                        currency: "usd",
+                        currency: "inr", // 🇮🇳 Set currency to Indian Rupees
                         product_data: {
                             name: product.name,
                             images: [product.image]
@@ -55,6 +55,25 @@ export const createCheckoutSession = async (req, res) => {
                 };
             })
         );
+
+        // Apply Delivery Charge: Free delivery on orders >= ₹500 (50,000 paise), else ₹50 delivery charge (5,000 paise)
+        const SHIPPING_THRESHOLD = 50000; // ₹500 in paise
+        const SHIPPING_FEE = 5000; // ₹50 in paise
+
+        if (totalAmount < SHIPPING_THRESHOLD) {
+            lineItems.push({
+                price_data: {
+                    currency: "inr",
+                    product_data: {
+                        name: "Delivery Charge",
+                        description: "Standard shipping fee (Free on orders above ₹500)"
+                    },
+                    unit_amount: SHIPPING_FEE
+                },
+                quantity: 1
+            });
+            totalAmount += SHIPPING_FEE;
+        }
 
         let coupon = null;
         if (couponCode) {
@@ -69,7 +88,7 @@ export const createCheckoutSession = async (req, res) => {
             }
         }
 
-        // Create Stripe Checkout Session
+        // Create Stripe Checkout Session in INR
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ["card"],
             line_items: lineItems,
@@ -96,8 +115,8 @@ export const createCheckoutSession = async (req, res) => {
             }
         });
 
-        // Reward customer with a new coupon if total order >= $200 (20,000 cents)
-        if (totalAmount >= 20000) {
+        // Reward customer with a new coupon if total order >= ₹5,000 (500,000 paise)
+        if (totalAmount >= 500000) {
             await createNewCoupon(req.user._id);
         }
 
@@ -148,7 +167,7 @@ export const checkoutSuccess = async (req, res) => {
                     quantity: p.quantity,
                     price: p.price
                 })),
-                totalAmount: session.amount_total / 100, // convert cents to dollars
+                totalAmount: session.amount_total / 100, // convert paise to rupees
                 stripeSessionId: sessionId
             });
 
