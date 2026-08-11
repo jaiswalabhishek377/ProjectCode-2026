@@ -29,6 +29,14 @@ const productSchema = new mongoose.Schema(
         isFeatured: {
             type: Boolean,
             default: false
+        },
+        rating: {
+            type: Number,
+            default: 4.8
+        },
+        reviewsCount: {
+            type: Number,
+            default: 34
         }
     },
     {

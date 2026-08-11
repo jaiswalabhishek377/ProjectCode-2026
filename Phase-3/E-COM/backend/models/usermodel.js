@@ -44,16 +44,11 @@ const userSchema = new mongoose.Schema(
 );
 
 // 🔒 Pre-save Hook: Automatically hashes raw password before saving to MongoDB
-userSchema.pre("save", async function (next) {
-    if (!this.isModified("password")) return next(); // Only re-hash if password changed
+userSchema.pre("save", async function () {
+    if (!this.isModified("password")) return; // Only re-hash if password changed
 
-    try {
-        const salt = await bcrypt.genSalt(10);
-        this.password = await bcrypt.hash(this.password, salt);
-        next();
-    } catch (error) {
-        next(error);
-    }
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
 });
 
 // 🔑 Custom Instance Method: Verifies plain text password against stored bcrypt hash during login
