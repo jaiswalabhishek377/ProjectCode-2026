@@ -2,7 +2,7 @@ import User from "../models/userModel.js";
 import jwt from "jsonwebtoken";
 import { generateTokens, setCookies } from "../lib/tokens.js";
 
-// @desc    Register new user
+// @desc    Register new customer account (Industry Standard)
 // @route   POST /api/auth/signup
 // @access  Public
 export const signup = async (req, res) => {
@@ -19,10 +19,12 @@ export const signup = async (req, res) => {
             return res.status(400).json({ message: "User already exists with this email" });
         }
 
+        // Public signup strictly creates customer accounts
         const user = await User.create({
             name,
             email,
-            password
+            password,
+            role: "customer"
         });
 
         // Generate JWT Access & Refresh Tokens and attach to httpOnly cookies
@@ -42,7 +44,7 @@ export const signup = async (req, res) => {
     }
 };
 
-// @desc    Authenticate user & get tokens
+// @desc    Authenticate user (Customer or Admin) & get tokens
 // @route   POST /api/auth/login
 // @access  Public
 export const login = async (req, res) => {

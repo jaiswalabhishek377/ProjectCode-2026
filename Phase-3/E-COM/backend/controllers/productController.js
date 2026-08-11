@@ -20,13 +20,14 @@ export const getAllProducts = async (req, res) => {
 export const getFeaturedProducts = async (req, res) => {
     try {
         // Find products where isFeatured is true
-        const featuredProducts = await Product.find({ isFeatured: true }).lean();
+        let featuredProducts = await Product.find({ isFeatured: true }).lean();
 
+        // Fallback: If no items are explicitly starred as featured, return the most recent uploaded products
         if (!featuredProducts || featuredProducts.length === 0) {
-            return res.status(404).json({ message: "No featured products found" });
+            featuredProducts = await Product.find({}).sort({ createdAt: -1 }).limit(8).lean();
         }
 
-        res.json(featuredProducts);
+        res.json(featuredProducts || []);
     } catch (error) {
         console.error("Error in getFeaturedProducts controller:", error.message);
         res.status(500).json({ message: "Server error fetching featured products", error: error.message });
@@ -38,7 +39,7 @@ export const getFeaturedProducts = async (req, res) => {
 // @access  Private/Admin
 export const createProduct = async (req, res) => {
     try {
-        const { name, description, price, image, category } = req.body;
+        const { name, description, price, image, category, isFeatured } = req.body;
 
         if (!name || !description || !price || !image || !category) {
             return res.status(400).json({ message: "Please provide all required product fields" });
@@ -58,7 +59,8 @@ export const createProduct = async (req, res) => {
             description,
             price,
             image: cloudinaryResponse?.secure_url ? cloudinaryResponse.secure_url : "",
-            category
+            category,
+            isFeatured: isFeatured || false
         });
 
         res.status(201).json(product);
