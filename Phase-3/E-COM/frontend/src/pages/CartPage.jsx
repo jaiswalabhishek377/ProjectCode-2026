@@ -17,7 +17,7 @@ const CartPage = () => {
     }, [getCartItems]);
 
     const handleCheckout = () => {
-        // Proceed to Checkout session (Stripe Integration in Section 13)
+        // Proceed to Checkout session (Stripe Integration in Section 14)
         navigate("/checkout");
     };
 
@@ -30,17 +30,17 @@ const CartPage = () => {
             className="space-y-8 py-4"
         >
             {/* Cart Header */}
-            <div className="border-b border-white/10 pb-6 flex items-center justify-between">
+            <div className="border-b border-[#27272a] pb-6 flex items-center justify-between">
                 <div>
                     <h1 className="font-heading font-black text-3xl sm:text-4xl text-white tracking-tight">
-                        Shopping <span className="text-gradient-blue">Bag</span>
+                        Shopping <span className="text-gradient-accent">Bag</span>
                     </h1>
-                    <p className="text-xs text-gray-400 mt-1">
+                    <p className="text-xs text-zinc-400 mt-1">
                         Review your items, apply promotional discounts, and proceed to checkout
                     </p>
                 </div>
-                <div className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-600/10 border border-blue-500/30 text-blue-400 text-xs font-bold">
-                    <ShoppingCart className="w-4 h-4" />
+                <div className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900 border border-zinc-700 text-zinc-300 text-xs font-bold">
+                    <ShoppingCart className="w-4 h-4 text-white" />
                     <span>{cart.reduce((sum, item) => sum + item.quantity, 0)} Items in Cart</span>
                 </div>
             </div>
@@ -48,18 +48,18 @@ const CartPage = () => {
             {/* Empty Cart View */}
             {cart.length === 0 && !loading ? (
                 <div className="surface-card p-12 text-center space-y-5 max-w-md mx-auto my-8">
-                    <div className="w-16 h-16 rounded-2xl bg-blue-900/20 border border-blue-500/30 flex items-center justify-center mx-auto text-blue-400">
+                    <div className="w-16 h-16 rounded-2xl bg-zinc-900 border border-zinc-700 flex items-center justify-center mx-auto text-white">
                         <ShoppingBag className="w-8 h-8" />
                     </div>
                     <div className="space-y-1">
                         <h3 className="font-heading font-bold text-xl text-white">Your Shopping Cart is Empty</h3>
-                        <p className="text-xs text-gray-400 leading-relaxed">
+                        <p className="text-xs text-zinc-400 leading-relaxed">
                             Looks like you haven't added any items to your shopping bag yet. Explore our luxury collections!
                         </p>
                     </div>
                     <Link to="/" className="inline-flex items-center gap-2 px-6 py-3 btn-primary text-xs font-bold">
-                        <span>Start Shopping</span>
-                        <ArrowRight className="w-4 h-4" />
+                        <span className="text-black">Start Shopping</span>
+                        <ArrowRight className="w-4 h-4 text-black" />
                     </Link>
                 </div>
             ) : (

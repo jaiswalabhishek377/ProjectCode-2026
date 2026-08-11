@@ -1,102 +1,50 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { 
-    ArrowRight, 
-    Star, 
-    ShoppingCart, 
-    Flame
-} from "lucide-react";
+import { ArrowRight, PackageX } from "lucide-react";
 import { motion } from "framer-motion";
 import { useProductStore } from "../stores/useProductStore";
-import { useCartStore } from "../stores/useCartStore";
+
+import HeroCarousel from "../components/HeroCarousel";
+import ProductCard from "../components/ProductCard";
+import ProductDetailModal from "../components/ProductDetailModal";
+import boatwatch from "../assets/boatwatch.jpg"
+import noiseheadphone from "../assets/noisehead.jpg"
+import airjordan1 from "../assets/airjordan1.jpg"
 
 const CATEGORIES = [
     {
         id: "tech",
         name: "Tech & Audio",
-        count: "24 Items",
-        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop&q=80",
-        description: "Studio-grade acoustics & smart devices"
+        description: "Studio-grade acoustics & smart devices",
+        image: noiseheadphone
     },
     {
         id: "footwear",
         name: "Footwear",
-        count: "18 Items",
-        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&auto=format&fit=crop&q=80",
-        description: "Performance sneakers & limited drops"
+        description: "Performance sneakers & limited drops",
+        image: airjordan1
     },
     {
         id: "watches",
         name: "Luxury Timepieces",
-        count: "12 Items",
-        image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop&q=80",
-        description: "Precision chronographs & automatics"
+        description: "Precision chronographs & automatics",
+        image: boatwatch
     },
     {
         id: "apparel",
         name: "Streetwear Apparel",
-        count: "30 Items",
-        image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=80",
-        description: "Heavyweight hoodies & essential tees"
-    },
-];
-
-const FALLBACK_BEST_SELLERS = [
-    {
-        _id: "prod-1",
-        name: "NEXUS Pro Noise-Canceling Headphones",
-        category: "Tech & Audio",
-        price: 299.99,
-        originalPrice: 349.99,
-        rating: 4.9,
-        reviews: 128,
-        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=80",
-        tag: "BEST SELLER"
-    },
-    {
-        _id: "prod-2",
-        name: "Chronograph Gold Edition Watch",
-        category: "Watches",
-        price: 450.00,
-        originalPrice: 520.00,
-        rating: 5.0,
-        reviews: 94,
-        image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&auto=format&fit=crop&q=80",
-        tag: "FEATURED"
-    },
-    {
-        _id: "prod-3",
-        name: "AeroGlide Stealth Carbon Sneakers",
-        category: "Footwear",
-        price: 185.00,
-        originalPrice: 210.00,
-        rating: 4.8,
-        reviews: 210,
-        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=80",
-        tag: "HOT"
-    },
-    {
-        _id: "prod-4",
-        name: "Heavyweight Oversized Streetwear Hoodie",
-        category: "Apparel",
-        price: 95.00,
-        originalPrice: 120.00,
-        rating: 4.9,
-        reviews: 165,
-        image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=500&auto=format&fit=crop&q=80",
-        tag: "NEW"
+        description: "Heavyweight hoodies & essential tees",
+        image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=80"
     },
 ];
 
 const HomePage = () => {
-    const { featuredProducts, fetchFeaturedProducts } = useProductStore();
-    const { addToCart } = useCartStore();
+    const { featuredProducts, fetchFeaturedProducts, loading } = useProductStore();
+    const [selectedProduct, setSelectedProduct] = useState(null);
 
     useEffect(() => {
         fetchFeaturedProducts();
     }, [fetchFeaturedProducts]);
-
-    const displayProducts = featuredProducts.length > 0 ? featuredProducts : FALLBACK_BEST_SELLERS;
 
     return (
         <motion.div 
@@ -107,63 +55,9 @@ const HomePage = () => {
             className="space-y-16 py-4"
         >
             
-            {/* 1. Hero Showcase Banner */}
-            <section className="relative rounded-3xl bg-[#0e0e11] p-8 sm:p-14 overflow-hidden border border-[#27272a] shadow-2xl">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
-                    
-                    {/* Left Hero Content */}
-                    <div className="lg:col-span-7 space-y-6">
-                        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900 border border-zinc-700 text-zinc-300 text-xs font-bold tracking-widest uppercase">
-                            <Flame className="w-3.5 h-3.5 fill-zinc-300" />
-                            <span>2026 MERCHANDISE DROPS</span>
-                        </div>
-
-                        <h1 className="font-heading font-black text-4xl sm:text-6xl text-white tracking-tight leading-[1.1]">
-                            CURATED LUXURY <br />
-                            <span className="text-gradient-accent">MERCHANDISE</span>
-                        </h1>
-
-                        <p className="text-zinc-400 text-sm sm:text-base max-w-xl leading-relaxed">
-                            Explore high-performance wireless acoustics, limited footwear, precision chronographs, and streetwear apparel engineered for uncompromised quality.
-                        </p>
-
-                        <div className="flex flex-wrap items-center gap-4 pt-2">
-                            <a 
-                                href="#categories" 
-                                className="px-7 py-3.5 btn-primary text-sm font-bold flex items-center gap-2 cursor-pointer"
-                            >
-                                <span>Shop Collections</span>
-                                <ArrowRight className="w-4 h-4" />
-                            </a>
-                            <a 
-                                href="#bestsellers" 
-                                className="px-7 py-3.5 btn-secondary text-sm font-bold cursor-pointer"
-                            >
-                                View Best Sellers
-                            </a>
-                        </div>
-                    </div>
-
-                    {/* Right Product Highlight Card */}
-                    <div className="lg:col-span-5 relative">
-                        <div className="relative rounded-2xl overflow-hidden border border-[#27272a] shadow-2xl group bg-[#000000]">
-                            <img 
-                                src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80" 
-                                alt="Hero Highlight Product"
-                                className="w-full h-80 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-500" 
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-transparent to-transparent" />
-                            <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-[#0e0e11]/90 backdrop-blur-md border border-[#27272a] flex items-center justify-between">
-                                <div>
-                                    <span className="text-[10px] font-bold uppercase text-zinc-400 tracking-wider">Spotlight Drop</span>
-                                    <h4 className="text-sm font-bold text-white">NEXUS ANC Pro Headphones</h4>
-                                </div>
-                                <span className="text-sm font-extrabold text-white">$299.99</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+            {/* 1. Interactive Hero Product Carousel */}
+            <section>
+                <HeroCarousel />
             </section>
 
             {/* 2. Category Grid Section */}
@@ -191,9 +85,6 @@ const HomePage = () => {
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e11] via-transparent to-transparent" />
-                                <span className="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-[#000000]/80 backdrop-blur-md text-[10px] font-bold text-white border border-[#27272a]">
-                                    {cat.count}
-                                </span>
                             </div>
                             <div className="p-5 flex-grow flex flex-col justify-between">
                                 <div>
@@ -219,68 +110,54 @@ const HomePage = () => {
                 <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-[#27272a] pb-4">
                     <div>
                         <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                            Trending <span className="text-gradient-accent">Best Sellers</span>
+                            Trending <span className="text-gradient-accent">Products</span>
                         </h2>
-                        <p className="text-xs text-zinc-400 mt-1">Handpicked favorites backed by customer reviews</p>
+                        <p className="text-xs text-zinc-400 mt-1">Real products fetched dynamically from MongoDB inventory</p>
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {displayProducts.map((prod) => (
-                        <div 
-                            key={prod._id} 
-                            className="surface-card overflow-hidden flex flex-col"
-                        >
-                            <div className="relative h-56 overflow-hidden bg-[#000000]">
-                                <img 
-                                    src={prod.image} 
-                                    alt={prod.name} 
-                                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                                />
-                                {prod.tag && (
-                                    <span className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-white text-black text-[10px] font-black tracking-wider uppercase">
-                                        {prod.tag}
-                                    </span>
-                                )}
-                            </div>
-
-                            <div className="p-5 flex-grow flex flex-col justify-between space-y-4">
-                                <div className="space-y-1.5">
-                                    <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">
-                                        {prod.category}
-                                    </span>
-                                    <h3 className="font-heading font-bold text-sm text-white line-clamp-1">
-                                        {prod.name}
-                                    </h3>
-                                    <div className="flex items-center gap-1.5 pt-1">
-                                        <div className="flex items-center text-amber-400">
-                                            <Star className="w-3.5 h-3.5 fill-amber-400" />
-                                            <span className="text-xs font-bold ml-1 text-zinc-200">{prod.rating || 4.9}</span>
-                                        </div>
-                                        <span className="text-[11px] text-zinc-500">({prod.reviews || 120} reviews)</span>
-                                    </div>
-                                </div>
-
-                                <div className="pt-3 border-t border-[#27272a] flex items-center justify-between">
-                                    <div>
-                                        <span className="text-base font-extrabold text-white">${prod.price}</span>
-                                        {prod.originalPrice && (
-                                            <span className="text-xs text-zinc-500 line-through ml-2">${prod.originalPrice}</span>
-                                        )}
-                                    </div>
-                                    <button 
-                                        onClick={() => addToCart(prod)}
-                                        className="p-2.5 btn-primary flex items-center justify-center cursor-pointer"
-                                        title="Add to Cart"
-                                    >
-                                        <ShoppingCart className="w-4 h-4 text-black" />
-                                    </button>
-                                </div>
-                            </div>
+                {loading && featuredProducts.length === 0 ? (
+                    /* Loading Skeleton */
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {[1, 2, 3, 4].map((n) => (
+                            <div key={n} className="surface-card h-80 animate-pulse bg-zinc-900/50" />
+                        ))}
+                    </div>
+                ) : featuredProducts.length === 0 ? (
+                    /* Empty Real Products State */
+                    <div className="surface-card p-12 text-center space-y-4 max-w-md mx-auto my-6">
+                        <div className="w-16 h-16 rounded-2xl bg-zinc-900 border border-zinc-700 flex items-center justify-center mx-auto text-white">
+                            <PackageX className="w-8 h-8" />
                         </div>
-                    ))}
-                </div>
+                        <h3 className="font-heading font-bold text-xl text-white">No Products in Database Yet</h3>
+                        <p className="text-xs text-zinc-400 leading-relaxed">
+                            Upload products using the <strong className="text-white">Admin Hub</strong> to display items live on the storefront!
+                        </p>
+                        <Link to="/secret-dashboard" className="inline-flex px-6 py-2.5 btn-primary text-xs font-bold mt-2">
+                            <span className="text-black">Open Admin Hub</span>
+                        </Link>
+                    </div>
+                ) : (
+                    /* Real Products Grid */
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {featuredProducts.map((prod) => (
+                            <ProductCard 
+                                key={prod._id} 
+                                product={prod} 
+                                onOpenModal={(product) => setSelectedProduct(product)} 
+                            />
+                        ))}
+                    </div>
+                )}
             </section>
+
+            {/* Product Detail Modal */}
+            {selectedProduct && (
+                <ProductDetailModal 
+                    product={selectedProduct} 
+                    onClose={() => setSelectedProduct(null)} 
+                />
+            )}
 
         </motion.div>
     );

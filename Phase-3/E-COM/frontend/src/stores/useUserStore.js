@@ -7,7 +7,7 @@ export const useUserStore = create((set, get) => ({
     loading: false,
     checkingAuth: true,
 
-    // Register a new user account
+    // Register a new customer account
     signup: async ({ name, email, password, confirmPassword }) => {
         set({ loading: true });
 
@@ -27,7 +27,7 @@ export const useUserStore = create((set, get) => ({
         }
     },
 
-    // Log in existing user
+    // Log in existing user (Customer or Admin)
     login: async (email, password) => {
         set({ loading: true });
 
@@ -66,7 +66,6 @@ export const useUserStore = create((set, get) => ({
 
     // Manual refresh token action if needed
     refreshToken: async () => {
-        // Prevent refresh loop if already unauthenticated
         if (get().checkingAuth) return;
 
         set({ checkingAuth: true });

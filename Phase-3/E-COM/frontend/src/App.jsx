@@ -7,6 +7,7 @@ import { useUserStore } from "./stores/useUserStore";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import LoadingSpinner from "./components/LoadingSpinner";
+import ScrollToTop from "./components/ScrollToTop";
 
 import HomePage from "./pages/HomePage";
 import CategoryPage from "./pages/CategoryPage";
@@ -30,17 +31,20 @@ const App = () => {
     return (
         <div className="min-h-screen bg-[#000000] text-white flex flex-col relative">
             
+            {/* Reset scroll position to top on route change */}
+            <ScrollToTop />
+
             {/* Navigation Header */}
             <Navbar />
 
             {/* Main Page Content */}
-            <main className="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 relative z-10 flex flex-col justify-center">
+            <main className="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 relative z-10 flex flex-col">
                 <AnimatePresence mode="wait">
                     <Routes location={location} key={location.pathname}>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/category/:category" element={<CategoryPage />} />
                         
-                        {/* Smooth Transition Authentication Routes */}
+                        {/* Authentication Routes */}
                         <Route path="/signup" element={!user ? <SignUpPage /> : <Navigate to="/" />} />
                         <Route path="/login" element={!user ? <LoginPage /> : <Navigate to="/" />} />
 
