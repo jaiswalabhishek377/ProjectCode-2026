@@ -5,7 +5,8 @@ import {
     User, 
     LogOut, 
     ShieldCheck, 
-    ShoppingBag
+    ShoppingBag,
+    Package
 } from "lucide-react";
 import { useUserStore } from "../stores/useUserStore";
 import { useCartStore } from "../stores/useCartStore";
@@ -79,6 +80,18 @@ const Navbar = () => {
                                 </span>
                             )}
                         </Link>
+
+                        {/* Customer Orders Link */}
+                        {user && (
+                            <Link
+                                to="/orders"
+                                className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#0e0e11] border border-[#27272a] text-zinc-300 hover:text-white text-xs font-bold transition-all"
+                                title="My Orders History"
+                            >
+                                <Package className="w-4 h-4 text-white" />
+                                <span className="hidden sm:inline">My Orders</span>
+                            </Link>
+                        )}
 
                         {/* Admin Hub Link */}
                         {isAdmin && (

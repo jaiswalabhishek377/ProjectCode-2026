@@ -16,9 +16,12 @@ const GiftCouponCard = () => {
 
     return (
         <div className="surface-card p-5 space-y-4">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-zinc-300">
-                <Tag className="w-4 h-4 text-white" />
-                <span>Have a Coupon or Promo Code?</span>
+            <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-zinc-300">
+                <div className="flex items-center gap-2">
+                    <Tag className="w-4 h-4 text-white" />
+                    <span>Have a Promo Code?</span>
+                </div>
+                <span className="text-[10px] text-zinc-400 font-mono">e.g. WELCOME10</span>
             </div>
 
             {isCouponApplied && coupon ? (
@@ -43,7 +46,7 @@ const GiftCouponCard = () => {
                         type="text"
                         value={userCode}
                         onChange={(e) => setUserCode(e.target.value)}
-                        placeholder="Enter coupon code (e.g. WELCOME10)"
+                        placeholder="Enter code (WELCOME10, NEXUS10, SAVE15)"
                         className="w-full px-3.5 py-2.5 input-minimal text-xs font-medium uppercase placeholder:normal-case"
                     />
                     <button

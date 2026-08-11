@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { ArrowRight, ChevronLeft, ChevronRight, Flame } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import nikeairjordan from "../assets/airjordan1.jpg"
-import boatwatch from "../assets/boatwatch.jpg"
-import noiseheadphone from "../assets/noisehead.jpg"
+
+import nikeairjordan from "../assets/airjordan1.jpg";
+import boatwatch from "../assets/boatwatch.jpg";
+import noiseheadphone from "../assets/noisehead.jpg";
+
 const CAROUSEL_SLIDES = [
     {
         id: 1,
@@ -14,7 +16,7 @@ const CAROUSEL_SLIDES = [
         targetCategory: "tech",
         image: noiseheadphone,
         productName: "NEXUS ANC Pro Studio Headphones",
-        price: "$2299.99"
+        price: "₹14,999"
     },
     {
         id: 2,
@@ -25,7 +27,7 @@ const CAROUSEL_SLIDES = [
         targetCategory: "watches",
         image: boatwatch,
         productName: "Stealth Automatic Black Chronograph",
-        price: "$1199.00"
+        price: "₹24,999"
     },
     {
         id: 3,
@@ -36,7 +38,7 @@ const CAROUSEL_SLIDES = [
         targetCategory: "footwear",
         image: nikeairjordan,
         productName: "AeroGlide Stealth Carbon Sneakers",
-        price: "$4999.00"
+        price: "₹9,999"
     },
 ];
 

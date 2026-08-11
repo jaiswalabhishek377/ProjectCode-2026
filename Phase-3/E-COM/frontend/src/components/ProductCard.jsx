@@ -57,7 +57,7 @@ const ProductCard = ({ product, onOpenModal }) => {
                 {/* Price & In-Card Quantity Adjuster */}
                 <div className="pt-3 border-t border-[#27272a] flex items-center justify-between gap-2">
                     <div>
-                        <span className="text-base font-extrabold text-white">${product.price}</span>
+                        <span className="text-base font-extrabold text-white">₹{product.price}</span>
                     </div>
 
                     {/* Inline Quantity Controls (`+` or `- cnt +`) */}

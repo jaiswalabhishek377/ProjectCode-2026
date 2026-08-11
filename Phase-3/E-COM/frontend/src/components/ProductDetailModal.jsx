@@ -1,5 +1,5 @@
 import React from "react";
-import { X, Plus, Minus, Star, ShoppingCart, CheckCircle } from "lucide-react";
+import { X, Plus, Minus, Star, CheckCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCartStore } from "../stores/useCartStore";
 
@@ -69,7 +69,7 @@ const ProductDetailModal = ({ product, onClose }) => {
 
                             {/* Price & In-Stock Status */}
                             <div className="flex items-center justify-between py-2 border-y border-[#27272a]">
-                                <span className="text-2xl font-black text-white">${product.price}</span>
+                                <span className="text-2xl font-black text-white">₹{product.price}</span>
                                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-700 text-emerald-400 text-xs font-bold">
                                     <CheckCircle className="w-3.5 h-3.5" />
                                     <span>In Stock</span>

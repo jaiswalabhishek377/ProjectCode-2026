@@ -23,7 +23,7 @@ const CartItem = ({ item }) => {
                         {item.name}
                     </h3>
                     <p className="text-xs text-zinc-400">
-                        ${item.price} per unit
+                        ₹{item.price} per unit
                     </p>
                 </div>
             </div>
@@ -57,7 +57,7 @@ const CartItem = ({ item }) => {
                 {/* Total Price for this item */}
                 <div className="text-right min-w-[80px]">
                     <span className="text-sm font-extrabold text-white">
-                        ${(item.price * item.quantity).toFixed(2)}
+                        ₹{(item.price * item.quantity).toFixed(2)}
                     </span>
                 </div>
 

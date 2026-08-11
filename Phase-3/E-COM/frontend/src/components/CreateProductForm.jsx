@@ -97,14 +97,14 @@ const CreateProductForm = () => {
                     {/* Price */}
                     <div className="space-y-1.5">
                         <label className="text-xs font-bold text-zinc-300 uppercase tracking-wider">
-                            Price ($ USD)
+                            Price (₹ INR)
                         </label>
                         <input
                             type="number"
                             step="0.01"
                             value={newProduct.price}
                             onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
-                            placeholder="299.99"
+                            placeholder="1499.00"
                             required
                             className="w-full px-4 py-3 input-minimal text-xs font-medium"
                         />

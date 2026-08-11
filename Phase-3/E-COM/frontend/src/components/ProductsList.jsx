@@ -45,7 +45,7 @@ const ProductsList = () => {
                             <tr className="border-b border-[#27272a] text-zinc-400 font-bold uppercase tracking-wider">
                                 <th className="py-3 px-4">Product</th>
                                 <th className="py-3 px-4">Category</th>
-                                <th className="py-3 px-4">Price</th>
+                                <th className="py-3 px-4">Price (₹)</th>
                                 <th className="py-3 px-4 text-center">Featured</th>
                                 <th className="py-3 px-4 text-right">Actions</th>
                             </tr>
@@ -72,7 +72,7 @@ const ProductsList = () => {
 
                                     {/* Price */}
                                     <td className="py-3 px-4 font-extrabold text-white">
-                                        ${product.price}
+                                        ₹{product.price}
                                     </td>
 
                                     {/* Toggle Featured Star */}
