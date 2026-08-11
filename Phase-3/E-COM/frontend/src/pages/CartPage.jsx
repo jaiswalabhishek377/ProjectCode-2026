@@ -1,24 +1,48 @@
-import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { ShoppingCart, ShoppingBag, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { toast } from "react-hot-toast";
 import { useCartStore } from "../stores/useCartStore";
+import axios from "../lib/axios";
 
 import CartItem from "../components/CartItem";
 import GiftCouponCard from "../components/GiftCouponCard";
 import OrderSummary from "../components/OrderSummary";
 
 const CartPage = () => {
-    const { cart, getCartItems, loading } = useCartStore();
-    const navigate = useNavigate();
+    const { cart, coupon, getCartItems, loading } = useCartStore();
+    const [isCheckingOut, setIsCheckingOut] = useState(false);
 
     useEffect(() => {
         getCartItems();
     }, [getCartItems]);
 
-    const handleCheckout = () => {
-        // Proceed to Checkout session (Stripe Integration in Section 14)
-        navigate("/checkout");
+    const handleCheckout = async () => {
+        if (cart.length === 0) {
+            return toast.error("Your shopping cart is empty!");
+        }
+
+        setIsCheckingOut(true);
+
+        try {
+            const res = await axios.post("/payments/create-checkout-session", {
+                products: cart,
+                couponCode: coupon ? coupon.code : null
+            });
+
+            if (res.data.url) {
+                // Redirect directly to official Stripe Checkout page
+                window.location.href = res.data.url;
+            } else {
+                toast.error("Failed to generate Stripe checkout session");
+                setIsCheckingOut(false);
+            }
+        } catch (error) {
+            console.error("Stripe Checkout Error:", error);
+            toast.error(error.response?.data?.message || "Failed to initiate Stripe checkout");
+            setIsCheckingOut(false);
+        }
     };
 
     return (
@@ -76,7 +100,10 @@ const CartPage = () => {
                     {/* Right Summary Column */}
                     <div className="lg:col-span-4 space-y-6">
                         <GiftCouponCard />
-                        <OrderSummary onCheckout={handleCheckout} />
+                        <OrderSummary 
+                            onCheckout={handleCheckout} 
+                            isCheckingOut={isCheckingOut} 
+                        />
                     </div>
 
                 </div>

@@ -15,6 +15,9 @@ import AdminPage from "./pages/AdminPage";
 import CartPage from "./pages/CartPage";
 import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
+import PurchaseSuccessPage from "./pages/PurchaseSuccessPage";
+import PurchaseCancelPage from "./pages/PurchaseCancelPage";
+import OrdersPage from "./pages/OrdersPage";
 
 const App = () => {
     const { user, checkAuth, checkingAuth } = useUserStore();
@@ -48,11 +51,18 @@ const App = () => {
                         <Route path="/signup" element={!user ? <SignUpPage /> : <Navigate to="/" />} />
                         <Route path="/login" element={!user ? <LoginPage /> : <Navigate to="/" />} />
 
+                        {/* Customer Orders Route */}
+                        <Route path="/orders" element={user ? <OrdersPage /> : <Navigate to="/login" />} />
+
                         {/* Secret Admin Dashboard Protected Route */}
                         <Route path="/secret-dashboard" element={user?.role === "admin" ? <AdminPage /> : <Navigate to="/login" />} />
 
                         {/* Cart Route */}
                         <Route path="/cart" element={user ? <CartPage /> : <Navigate to="/login" />} />
+
+                        {/* Stripe Checkout Result Routes */}
+                        <Route path="/purchase-success" element={user ? <PurchaseSuccessPage /> : <Navigate to="/login" />} />
+                        <Route path="/purchase-cancel" element={user ? <PurchaseCancelPage /> : <Navigate to="/login" />} />
                     </Routes>
                 </AnimatePresence>
             </main>

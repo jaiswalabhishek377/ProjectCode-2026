@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { PlusCircle, Package, ShieldCheck } from "lucide-react";
+import { PlusCircle, Package, ShieldCheck, Truck, BarChart3 } from "lucide-react";
 import { motion } from "framer-motion";
 
 import CreateProductForm from "../components/CreateProductForm";
 import ProductsList from "../components/ProductsList";
+import OrdersList from "../components/OrdersList";
+import AnalyticsTab from "../components/AnalyticsTab";
 
 const AdminPage = () => {
     const [activeTab, setActiveTab] = useState("create");
@@ -24,15 +26,15 @@ const AdminPage = () => {
                         <span>SECRET ADMIN HUB</span>
                     </div>
                     <h1 className="font-heading font-black text-3xl sm:text-4xl text-white tracking-tight">
-                        Product <span className="text-gradient-accent">Management</span>
+                        Admin <span className="text-gradient-accent">Dashboard</span>
                     </h1>
                     <p className="text-xs text-zinc-400 mt-1">
-                        Create products with Cloudinary image hosting, feature items, and manage inventory
+                        Manage inventory, upload Cloudinary product media, feature items, fulfill orders, and monitor sales analytics
                     </p>
                 </div>
 
                 {/* Tab Switcher Buttons */}
-                <div className="flex items-center gap-2 p-1 rounded-xl bg-[#0e0e11] border border-[#27272a] shrink-0">
+                <div className="flex items-center gap-2 p-1 rounded-xl bg-[#0e0e11] border border-[#27272a] shrink-0 overflow-x-auto">
                     <button
                         onClick={() => setActiveTab("create")}
                         className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
@@ -53,7 +55,29 @@ const AdminPage = () => {
                         }`}
                     >
                         <Package className="w-4 h-4" />
-                        <span>Products List</span>
+                        <span>Products Inventory</span>
+                    </button>
+                    <button
+                        onClick={() => setActiveTab("orders")}
+                        className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                            activeTab === "orders"
+                                ? "bg-white text-black shadow-md"
+                                : "text-zinc-400 hover:text-white"
+                        }`}
+                    >
+                        <Truck className="w-4 h-4" />
+                        <span>Fulfill Orders</span>
+                    </button>
+                    <button
+                        onClick={() => setActiveTab("analytics")}
+                        className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                            activeTab === "analytics"
+                                ? "bg-white text-black shadow-md"
+                                : "text-zinc-400 hover:text-white"
+                        }`}
+                    >
+                        <BarChart3 className="w-4 h-4" />
+                        <span>Sales Analytics</span>
                     </button>
                 </div>
             </div>
@@ -62,6 +86,8 @@ const AdminPage = () => {
             <div>
                 {activeTab === "create" && <CreateProductForm />}
                 {activeTab === "products" && <ProductsList />}
+                {activeTab === "orders" && <OrdersList />}
+                {activeTab === "analytics" && <AnalyticsTab />}
             </div>
 
         </motion.div>

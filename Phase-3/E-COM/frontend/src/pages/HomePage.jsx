@@ -7,9 +7,10 @@ import { useProductStore } from "../stores/useProductStore";
 import HeroCarousel from "../components/HeroCarousel";
 import ProductCard from "../components/ProductCard";
 import ProductDetailModal from "../components/ProductDetailModal";
-import boatwatch from "../assets/boatwatch.jpg"
-import noiseheadphone from "../assets/noisehead.jpg"
-import airjordan1 from "../assets/airjordan1.jpg"
+
+import nikeairjordan from "../assets/airjordan1.jpg";
+import boatwatch from "../assets/boatwatch.jpg";
+import noiseheadphone from "../assets/noisehead.jpg";
 
 const CATEGORIES = [
     {
@@ -22,7 +23,7 @@ const CATEGORIES = [
         id: "footwear",
         name: "Footwear",
         description: "Performance sneakers & limited drops",
-        image: airjordan1
+        image: nikeairjordan
     },
     {
         id: "watches",
@@ -55,7 +56,7 @@ const HomePage = () => {
             className="space-y-16 py-4"
         >
             
-            {/* 1. Interactive Hero Product Carousel */}
+            {/* 1. Hero Product Carousel with Local Assets */}
             <section>
                 <HeroCarousel />
             </section>
@@ -78,7 +79,7 @@ const HomePage = () => {
                             to={`/category/${cat.id}`}
                             className="group surface-card overflow-hidden flex flex-col"
                         >
-                            <div className="h-48 overflow-hidden relative">
+                            <div className="h-48 overflow-hidden relative bg-black">
                                 <img 
                                     src={cat.image} 
                                     alt={cat.name} 
