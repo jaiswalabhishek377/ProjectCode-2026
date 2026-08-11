@@ -58,27 +58,27 @@ const SignUpPage = () => {
                 transition={{ duration: 0.25 }}
                 className="w-full max-w-md space-y-6"
             >
-                {/* Header Title (Logo removed) */}
+                {/* Header Title */}
                 <div className="text-center space-y-2">
                     <h2 className="font-heading font-black text-3xl text-white tracking-tight">
-                        Create Your <span className="text-gradient-blue">NEXUS</span> Account
+                        Create Your <span className="text-gradient-accent">NEXUS</span> Account
                     </h2>
-                    <p className="text-xs text-gray-400">
+                    <p className="text-xs text-zinc-400">
                         Join NEXUS to unlock private collections, tracking, and instant checkout.
                     </p>
                 </div>
 
-                {/* Clean Form Card */}
+                {/* Monochromatic Form Card */}
                 <div className="surface-card p-8 space-y-5">
                     <form onSubmit={handleSubmit} className="space-y-4">
                         
                         {/* Full Name */}
                         <div className="space-y-1.5">
-                            <label className="text-xs font-bold text-gray-300 uppercase tracking-wider">
+                            <label className="text-xs font-bold text-zinc-300 uppercase tracking-wider">
                                 Full Name
                             </label>
                             <div className="relative">
-                                <User className="w-4 h-4 text-blue-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                                <User className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                                 <input
                                     type="text"
                                     name="name"
@@ -93,11 +93,11 @@ const SignUpPage = () => {
 
                         {/* Email Address */}
                         <div className="space-y-1.5">
-                            <label className="text-xs font-bold text-gray-300 uppercase tracking-wider">
+                            <label className="text-xs font-bold text-zinc-300 uppercase tracking-wider">
                                 Email Address
                             </label>
                             <div className="relative">
-                                <Mail className="w-4 h-4 text-blue-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                                <Mail className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                                 <input
                                     type="email"
                                     name="email"
@@ -112,11 +112,11 @@ const SignUpPage = () => {
 
                         {/* Password */}
                         <div className="space-y-1.5">
-                            <label className="text-xs font-bold text-gray-300 uppercase tracking-wider">
+                            <label className="text-xs font-bold text-zinc-300 uppercase tracking-wider">
                                 Password
                             </label>
                             <div className="relative">
-                                <Lock className="w-4 h-4 text-blue-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                                <Lock className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                                 <input
                                     type={showPassword ? "text" : "password"}
                                     name="password"
@@ -129,7 +129,7 @@ const SignUpPage = () => {
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
+                                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white"
                                 >
                                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                                 </button>
@@ -138,11 +138,11 @@ const SignUpPage = () => {
 
                         {/* Confirm Password */}
                         <div className="space-y-1.5">
-                            <label className="text-xs font-bold text-gray-300 uppercase tracking-wider">
+                            <label className="text-xs font-bold text-zinc-300 uppercase tracking-wider">
                                 Confirm Password
                             </label>
                             <div className="relative">
-                                <Lock className="w-4 h-4 text-blue-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                                <Lock className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                                 <input
                                     type={showConfirmPassword ? "text" : "password"}
                                     name="confirmPassword"
@@ -155,7 +155,7 @@ const SignUpPage = () => {
                                 <button
                                     type="button"
                                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
+                                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white"
                                 >
                                     {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                                 </button>
@@ -170,13 +170,13 @@ const SignUpPage = () => {
                         >
                             {loading ? (
                                 <>
-                                    <Loader className="w-4 h-4 animate-spin" />
-                                    <span>Creating Account...</span>
+                                    <Loader className="w-4 h-4 animate-spin text-black" />
+                                    <span className="text-black">Creating Account...</span>
                                 </>
                             ) : (
                                 <>
-                                    <UserPlus className="w-4 h-4" />
-                                    <span>Create Account</span>
+                                    <UserPlus className="w-4 h-4 text-black" />
+                                    <span className="text-black">Create Account</span>
                                 </>
                             )}
                         </button>
@@ -184,10 +184,10 @@ const SignUpPage = () => {
                     </form>
 
                     {/* Footer link */}
-                    <div className="pt-4 border-t border-white/10 text-center">
-                        <p className="text-xs text-gray-400">
+                    <div className="pt-4 border-t border-[#27272a] text-center">
+                        <p className="text-xs text-zinc-400">
                             Already have an account?{" "}
-                            <Link to="/login" className="text-blue-400 font-bold hover:underline inline-flex items-center gap-1">
+                            <Link to="/login" className="text-white font-bold hover:underline inline-flex items-center gap-1">
                                 <span>Log In</span>
                                 <ArrowRight className="w-3 h-3" />
                             </Link>

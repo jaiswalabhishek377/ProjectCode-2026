@@ -28,7 +28,7 @@ const App = () => {
     }
 
     return (
-        <div className="min-h-screen bg-[#080b11] text-slate-100 flex flex-col relative">
+        <div className="min-h-screen bg-[#000000] text-white flex flex-col relative">
             
             {/* Navigation Header */}
             <Navbar />
@@ -61,23 +61,17 @@ const App = () => {
                 position="top-right"
                 toastOptions={{
                     style: {
-                        background: '#0f1523',
-                        color: '#f8fafc',
-                        border: '1px solid rgba(59, 130, 246, 0.3)',
-                        boxShadow: '0 0 25px rgba(0, 0, 0, 0.5)',
+                        background: '#0e0e11',
+                        color: '#ffffff',
+                        border: '1px solid #27272a',
+                        boxShadow: '0 0 25px rgba(0, 0, 0, 0.8)',
                         fontSize: '14px',
                         fontWeight: '600'
                     },
                     success: {
                         iconTheme: {
-                            primary: '#3b82f6',
-                            secondary: '#ffffff',
-                        },
-                    },
-                    error: {
-                        iconTheme: {
-                            primary: '#ef4444',
-                            secondary: '#ffffff',
+                            primary: '#ffffff',
+                            secondary: '#000000',
                         },
                     },
                 }}
